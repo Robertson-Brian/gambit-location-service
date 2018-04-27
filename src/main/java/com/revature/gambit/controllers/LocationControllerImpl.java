@@ -1,11 +1,10 @@
 package com.revature.gambit.controllers;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.parsing.Location;
 
+import com.revature.gambit.entities.Location;
 import com.revature.gambit.services.LocationService;
 
 public class LocationControllerImpl implements LocationController {
@@ -18,28 +17,28 @@ public class LocationControllerImpl implements LocationController {
 	}
 
 	@Override
-	public Optional<Set<Location>> getAllLocations() {
+	public List<Location> getAllLocations() {
 		return locationService.findAllLocation();
 	}
 
 	@Override
-	public Optional<Location> getLocationByID(Integer id) {
+	public Location getLocationByID(Integer id) {
 		return locationService.findLocationByID(id);
 	}
 
 	@Override
-	public Optional<Location> createLocation(Location location) {
+	public Location createLocation(Location location) {
 		return locationService.saveLocation(location);
 	}
 
 	@Override
-	public Optional<Location> updateLocation(Integer id, Location location) {
+	public Location updateLocation(Integer id, Location location) {
 		return locationService.saveLocation(location);
 	}
 
 	@Override
-	public Optional<Location> deleteLocationByID(Integer id) {
-		return locationService.deactivateLocation();
+	public Location deleteLocationByID(Integer id) {
+		return locationService.deactivateLocation(id);
 	}
 
 	

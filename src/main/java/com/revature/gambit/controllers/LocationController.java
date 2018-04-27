@@ -6,10 +6,8 @@
  */
 package com.revature.gambit.controllers;
 
-import java.util.Optional;
-import java.util.Set;
+import java.util.List;
 
-import org.springframework.beans.factory.parsing.Location;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.revature.gambit.entities.Location;
 
 @RestController
 @RequestMapping("location")
@@ -35,7 +35,7 @@ public interface LocationController {
 	 *         value of "Do Not Exist"
 	 */
 	@GetMapping("/")
-	Optional<Set<Location>> getAllLocations();
+	List<Location> getAllLocations();
 
 	/**
 	 * getLocationById - Handles request to Location Service API retrieve an
@@ -49,7 +49,7 @@ public interface LocationController {
 	 *         value of "Do Not Exist"
 	 */
 	@GetMapping("/{id}")
-	Optional<Location> getLocationByID(@PathVariable(name = "id") Integer id);
+	Location getLocationByID(@PathVariable(name = "id") Integer id);
 
 	/* Post Methods/Create Methods */
 	/**
@@ -66,7 +66,7 @@ public interface LocationController {
 	 *         Exist"
 	 */
 	@PostMapping("/")
-	Optional<Location> createLocation(@RequestBody Location location);
+	Location createLocation(@RequestBody Location location);
 
 	/*Put Methods/Update*/
 	/**
@@ -81,7 +81,7 @@ public interface LocationController {
 	 * @return
 	 */
 	@PutMapping("/{id}")
-	Optional<Location> updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location);
+	Location updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location);
 
 	/*Delete Methods*/
 	/**
@@ -96,6 +96,6 @@ public interface LocationController {
 	 * @return
 	 */
 	@DeleteMapping("/{id}")
-	Optional<Location> deleteLocationByID(@PathVariable(name = "id") Integer id);
+	Location deleteLocationByID(@PathVariable(name = "id") Integer id);
 
 }

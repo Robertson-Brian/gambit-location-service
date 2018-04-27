@@ -1,32 +1,73 @@
 package com.revature.gambit.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-import org.springframework.beans.factory.parsing.Location;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.revature.gambit.entities.Location;
+import com.revature.gambit.repository.LocationRepo;
 
 public class LocationService {
 
-	public Optional<Set<Location>> findAllLocation() {
-		// TODO Auto-generated method stub
-		return null;
+	LocationRepo repository;
+
+	//Constructor
+	@Autowired
+	public LocationService(LocationRepo repository) {
+		this.repository = repository;
 	}
 
-	public Optional<Location> findLocationByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public LocationService() {
 	}
 
-	public Optional<Location> saveLocation(Location location) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Returns all Locations in the database.
+	 * 
+	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @return List of Locations
+	 */
+	public List<Location> findAllLocation() {
+		return repository.findAll();
 	}
 
-	public Optional<Location> deactivateLocation() {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Finds the location by the Id number;
+	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @param id
+	 * @return On Success it returns the queried location. On failure it returns
+	 *         null.
+	 */
+	public Location findLocationByID(Integer id) {
+		Optional<Location> result = Optional.of(repository.findLocationById(id));
+		if (result.isPresent()) {
+			return result.get();
+		} else {
+			return null;
+		}
+
 	}
 
+	/**
+	 * Saves the location and returns it after being written to the database.
+	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @param location
+	 * @return
+	 */
+	public Location saveLocation(Location location) {
+		return repository.saveAndFlush(location);
+	}
 
+	/**
+	 * Deactivates the location with the specified LocationID
+	 * @param id
+	 * @return
+	 */
+	public Location deactivateLocation(Integer locationId) {
+		Location deactivating = repository.findLocationById(locationId);
+		deactivating.setActive(false);
+		return repository.saveAndFlush(deactivating);
+	}
 
 }
