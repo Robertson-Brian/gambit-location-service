@@ -1,0 +1,47 @@
+CREATE TABLE locations (
+  location_id SERIAL PRIMARY KEY,
+  street varchar2(50) NOT NULL,
+  city varchar2(25) NOT NULL,
+  state varchar2(20) NOT NULL,
+  zip varchar2(10) NOT NULL,
+  company varchar2(25) NOT NULL,
+  active boolean NOT NULL,
+);
+
+CREATE TABLE buildings (
+  building_id SERIAL PRIMARY KEY,
+  street_address varchar2(50) NOT NULL,
+  building_number varchar2(10),
+  LOCATION_ID integer not null,
+  foreign key (LOCATION_ID) references LOCATIONS (LOCATION_ID)
+);
+
+CREATE TABLE rooms (
+  room_id serial PRIMARY KEY,
+  room_number varchar2(20) NOT NULL,
+  building_id integer NOT NULL,
+  capacity integer NOT NULL,
+  FOREIGN KEY (building_id) REFERENCES BUILDINGS(BUILDING_ID)
+);
+
+CREATE TABLE `unavailabilities` (
+  `unavailability_id` SERIAL PRIMARY KEY,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `room_id` integer NOT NULL,
+  `comments` varchar2(255),
+  `batch_id?` integer,
+  FOREIGN KEY (room_id) REFERENCES rooms(room_id)
+);
+
+INSERT INTO LOCATIONS (street, city, state, zip, company, active)
+VALUES ('11730 Plaza America Dr #205', 'Reston', 'Virginia', '20190', 'HQ_Revature', true);
+
+INSERT INTO LOCATIONS (street, city, state,  zip, company, active)  
+VALUES ('3220 Banyan Circle', 'Tampa', 'Florida', '33613', 'USF_Revature', true);
+
+INSERT INTO buildings(street_address, building_number, location_id)
+VALUES('3220 Banyan Circle', null, 2)
+
+INSERT INTO buildings(street_address, building_number, location_id)
+VALUES('11730 Plaza America Dr', '205', 1)
