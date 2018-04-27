@@ -1,5 +1,5 @@
 /**
- * Room Entities - Handles mapping and relations to and from the database utilizing hibernate annotations.
+ * Room Entity - Handles mapping and relations to and from the database utilizing javax persistence annotations.
  * @author Stephen Lovick | 1803-USF-MAR05
  * @author Jake Trump | 1803-USF-MAR05
  */
@@ -16,30 +16,31 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Rooms")
+@Table(name = "Rooms")
 public class Room {
-	
+
 	@Id
-	@Column(name="building_id")
+	@Column(name = "building_id")
 	@SequenceGenerator(name = "batch_id_seq", sequenceName = "batch_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "batch_id_seq", strategy = GenerationType.AUTO)
 	private Long roomId;
-	
-	@Column(name="room_number")
+
+	@Column(name = "room_number")
 	private Long roomNumber;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@Column(name="building_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@Column(name = "building_id")
 	private Long buildingId;
-	
-	@Column(name="unavailability_id")
+
+	@Column(name = "unavailability_id")
 	private Long unavailability;
-	
-	@Column(name="capacity")
+
+	@Column(name = "capacity")
 	private Integer capacity;
-	
-	//Constructors
-	public Room() { }
+
+	// Constructors
+	public Room() {
+	}
 
 	public Room(Long roomId, Long roomNumber, Long buildingId, Long unavailability, Integer capacity) {
 		super();
@@ -50,7 +51,7 @@ public class Room {
 		this.capacity = capacity;
 	}
 
-	//Accessors and Mutators
+	// Accessors and Mutators
 	public Long getRoomId() {
 		return roomId;
 	}
@@ -91,6 +92,7 @@ public class Room {
 		this.capacity = capacity;
 	}
 
+	// toString, hashCode, equals
 	@Override
 	public String toString() {
 		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", buildingId=" + buildingId
@@ -145,8 +147,5 @@ public class Room {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 }

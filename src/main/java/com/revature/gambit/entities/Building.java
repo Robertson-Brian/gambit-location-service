@@ -1,5 +1,5 @@
 /**
- * Building Entities - Handles mapping and relations to and from the database utilizing hibernate annotations.
+ * Building Entities - Handles mapping and relations to and from the database utilizing javax persistence annotations
  * @author Stephen Lovick | 1803-USF-MAR05
  * @author Jake Trump | 1803-USF-MAR05
  */
@@ -78,6 +78,7 @@ public class Building {
 		this.locationId = locationId;
 	}
 
+	// toString, hashCode, equals
 	@Override
 	public String toString() {
 		return "Building [buildingId=" + buildingId + ", streetAddress=" + streetAddress + ", buildingNumber="

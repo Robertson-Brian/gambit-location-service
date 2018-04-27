@@ -1,5 +1,5 @@
 /**
- * Location Entities - Handles mapping and relations to and from the database utilizing hibernate annotations.
+ * Location Entities - Handles mapping and relations to and from the database utilizing javax persistence annotations
  * @author Stephen Lovick | 1803-USF-MAR05
  * @author Jake Trump | 1803-USF-MAR05
  */
@@ -113,6 +113,7 @@ public class Location {
 		this.active = active;
 	}
 
+	// toString, hashCode, equals
 	@Override
 	public String toString() {
 		return "Location [locationId=" + locationId + ", street=" + street + ", city=" + city + ", state=" + state

@@ -67,7 +67,7 @@ public interface LocationServiceController {
 	 */
 	// HTTP Post Requests
 	@PostMapping("/")
-	Optional<Object> createLocation(@RequestBody Location location);
+	Optional<Location> createLocation(@RequestBody Location location);
 
 	/**
 	 * updateLocation - Handles request to Location Service API to update an
@@ -81,7 +81,7 @@ public interface LocationServiceController {
 	 */
 	// HTTP Put Requests
 	@PutMapping("/{id}")
-	Optional<Object> updateLocation(@PathVariable(name = "id") Integer id);
+	Optional<Location> updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location);
 
 	/**
 	 * deleteLocationById - Handles request to Location Service API to place an
@@ -95,6 +95,6 @@ public interface LocationServiceController {
 	 */
 	// HTTP Delete Requests
 	@DeleteMapping("/{id}")
-	Optional<Object> deleteLocationByID(@PathVariable(name = "id") Integer id);
+	Optional<Location> deleteLocationByID(@PathVariable(name = "id") Integer id);
 
 }
