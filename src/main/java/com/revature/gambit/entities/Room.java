@@ -11,25 +11,31 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Rooms")
 public class Room {
 
 	@Id
-	@Column(name = "building_id")
-	@SequenceGenerator(name = "batch_id_seq", sequenceName = "batch_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "batch_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "room_id")
+	@SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "room_id_seq", strategy = GenerationType.AUTO)
 	private Long roomId;
 
 	@Column(name = "room_number")
 	private Long roomNumber;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@Column(name = "building_id")
+	//@Column(name = "building_id")
+	@JoinColumn(name= "building_id")
+	@Transient
+	private Building building;
+	//TODO: Remove
 	private Long buildingId;
 
 	@Column(name = "unavailability_id")

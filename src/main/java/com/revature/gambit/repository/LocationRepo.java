@@ -5,6 +5,6 @@ import com.revature.gambit.entities.Location;
 
 public interface LocationRepo extends JpaRepository<Location, Long>{
 
-	Location findLocationById(Integer id);
+	Location findLocationByLocationId(Long id);
 
 }

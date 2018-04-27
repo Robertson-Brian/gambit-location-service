@@ -19,8 +19,8 @@ public class Unavailabilities {
 
 	@Id
 	@Column(name = "unavailabilities_id")
-	@SequenceGenerator(name = "batch_id_seq", sequenceName = "batch_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "batch_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "unavailabilities_id_seq", sequenceName = "unavailabilities_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "unavailabilities_id_seq", strategy = GenerationType.AUTO)
 	private Long unavailabilitiesId;
 
 	@Column(name = "start_date")

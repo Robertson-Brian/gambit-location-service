@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.gambit.entities.Location;
 import com.revature.gambit.repository.LocationRepo;
 
+@Service
 public class LocationService {
 
 	LocationRepo repository;
@@ -40,7 +42,7 @@ public class LocationService {
 	 *         null.
 	 */
 	public Location findLocationByID(Integer id) {
-		Optional<Location> result = Optional.of(repository.findLocationById(id));
+		Optional<Location> result = Optional.of(repository.findLocationByLocationId(id.longValue()));
 		if (result.isPresent()) {
 			return result.get();
 		} else {
@@ -65,7 +67,7 @@ public class LocationService {
 	 * @return
 	 */
 	public Location deactivateLocation(Integer locationId) {
-		Location deactivating = repository.findLocationById(locationId);
+		Location deactivating = repository.findLocationByLocationId(locationId.longValue());
 		deactivating.setActive(false);
 		return repository.saveAndFlush(deactivating);
 	}

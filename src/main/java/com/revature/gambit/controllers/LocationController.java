@@ -8,6 +8,7 @@ package com.revature.gambit.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.gambit.entities.Location;
+import com.revature.gambit.services.LocationService;
 
 @RestController
 @RequestMapping("location")
-public interface LocationController {
+public class LocationController {
+	
+	LocationService locationService;
+
+	@Autowired
+	public LocationController(LocationService locationService) {
+		this.locationService = locationService;
+	}
+	
 	/*Get Methods/Read Methods*/
 	/**
 	 * getAllLocations - Handles request to Location Service API retrieve all
@@ -35,7 +45,9 @@ public interface LocationController {
 	 *         value of "Do Not Exist"
 	 */
 	@GetMapping("/")
-	List<Location> getAllLocations();
+	public List<Location> getAllLocations() {
+		return locationService.findAllLocation();
+	}
 
 	/**
 	 * getLocationById - Handles request to Location Service API retrieve an
@@ -49,7 +61,9 @@ public interface LocationController {
 	 *         value of "Do Not Exist"
 	 */
 	@GetMapping("/{id}")
-	Location getLocationByID(@PathVariable(name = "id") Integer id);
+	Location getLocationByID(@PathVariable(name = "id") Integer id){
+		return locationService.findLocationByID(id);
+	}
 
 	/* Post Methods/Create Methods */
 	/**
@@ -66,7 +80,9 @@ public interface LocationController {
 	 *         Exist"
 	 */
 	@PostMapping("/")
-	Location createLocation(@RequestBody Location location);
+	Location createLocation(@RequestBody Location location){
+		return locationService.saveLocation(location);
+	}
 
 	/*Put Methods/Update*/
 	/**
@@ -81,7 +97,9 @@ public interface LocationController {
 	 * @return
 	 */
 	@PutMapping("/{id}")
-	Location updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location);
+	Location updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location){
+		return locationService.saveLocation(location);
+	}
 
 	/*Delete Methods*/
 	/**
@@ -96,6 +114,10 @@ public interface LocationController {
 	 * @return
 	 */
 	@DeleteMapping("/{id}")
-	Location deleteLocationByID(@PathVariable(name = "id") Integer id);
+	Location deleteLocationByID(@PathVariable(name = "id") Integer id){
+		return locationService.deactivateLocation(id);
+	}
+	
+	
 
 }

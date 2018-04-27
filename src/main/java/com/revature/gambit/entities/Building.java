@@ -11,9 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="building")
@@ -21,8 +23,8 @@ public class Building {
 	
 	@Id
 	@Column(name="building_id")
-	@SequenceGenerator(name = "batch_id_seq", sequenceName = "batch_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "batch_id_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
 	private Long buildingId;
 	
 	@Column(name="street_address")
@@ -31,8 +33,12 @@ public class Building {
 	@Column(name="building_number")
 	private Long buildingNumber;
 
+	@Transient
 	@ManyToOne(fetch=FetchType.LAZY)
-	@Column(name="location_id")
+	//@Column(name="location_id")
+	@JoinColumn(name="location_id")
+	private Location location;
+	
 	private Long locationId;
 
 	//Constructor

@@ -17,10 +17,11 @@ import javax.persistence.Table;
 @Table(name="locations")
 public class Location {
 	
+	//Change on Database t
 	@Id
-	@Column(name="building_id")
-	@SequenceGenerator(name = "batch_id_seq", sequenceName = "batch_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "batch_id_seq", strategy = GenerationType.AUTO)
+	@Column(name="location_id")
+	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
 	private Long locationId;
 	
 	@Column(name="street")
