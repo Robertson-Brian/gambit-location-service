@@ -6,8 +6,8 @@
  */
 package com.revature.gambit.controllers;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.parsing.Location;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/location")
-public interface LocationServiceController {
-	//TODO : Change return object prototypes
-
+@RequestMapping("location")
+public interface LocationController {
+	/*Get Methods/Read Methods*/
 	/**
 	 * getAllLocations - Handles request to Location Service API retrieve all
 	 * locations
@@ -35,9 +34,8 @@ public interface LocationServiceController {
 	 *         location object with an ID of "-1" and all other fields with the
 	 *         value of "Do Not Exist"
 	 */
-	// HTTP Get Requests
 	@GetMapping("/")
-	Optional<List<Object>> getAllLocations();
+	Optional<Set<Location>> getAllLocations();
 
 	/**
 	 * getLocationById - Handles request to Location Service API retrieve an
@@ -51,24 +49,26 @@ public interface LocationServiceController {
 	 *         value of "Do Not Exist"
 	 */
 	@GetMapping("/{id}")
-	Optional<Object> getLocationByID(@PathVariable(name = "id") Integer id);
+	Optional<Location> getLocationByID(@PathVariable(name = "id") Integer id);
 
+	/* Post Methods/Create Methods */
 	/**
 	 * createLocation - Handles requests to Location Service API to create a new
 	 * location
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
-	 * @param location from the request body
+	 * @param location
+	 *            from the request body
 	 * @return On success the method returns the created location with a non
 	 *         negative ID field. On failure the method returns a location object
 	 *         with an ID of -1 and all other fields with the value of "Do Not
 	 *         Exist"
 	 */
-	// HTTP Post Requests
 	@PostMapping("/")
 	Optional<Location> createLocation(@RequestBody Location location);
 
+	/*Put Methods/Update*/
 	/**
 	 * updateLocation - Handles request to Location Service API to update an
 	 * existing location.
@@ -76,13 +76,14 @@ public interface LocationServiceController {
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
 	 * 
-	 * @param id: from the URI address 
+	 * @param id:
+	 *            from the URI address
 	 * @return
 	 */
-	// HTTP Put Requests
 	@PutMapping("/{id}")
 	Optional<Location> updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Location location);
 
+	/*Delete Methods*/
 	/**
 	 * deleteLocationById - Handles request to Location Service API to place an
 	 * existing location inactive
@@ -90,10 +91,10 @@ public interface LocationServiceController {
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
 	 * 
-	 * @param id: from the URI address 
+	 * @param id:
+	 *            from the URI address
 	 * @return
 	 */
-	// HTTP Delete Requests
 	@DeleteMapping("/{id}")
 	Optional<Location> deleteLocationByID(@PathVariable(name = "id") Integer id);
 
