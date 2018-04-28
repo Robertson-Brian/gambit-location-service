@@ -8,8 +8,8 @@ import com.revature.gambit.entities.Building;
 
 public interface BuildingRepo extends JpaRepository<Building, Long>{
 
-	List<Building> findByLocationId(long longValue);
+	List<Building> findByLocationId(Long longValue);
 
-	Building findByBuildingId(long longValue);
+	Building findByBuildingId(Long longValue);
 
 }
