@@ -121,68 +121,68 @@ public class LocationControllerImpl implements LocationController {
 		return locationService.deactivateLocation(id);
 	}
 
-	/*----------------------------------------buildings-----------------------------------*/
-	/**
-	 * HTTP GET getAllBuildings - Handles request to Location Service API to get
-	 * all buildings
-	 * 
-	 * @author Stephen Lovick | 1803-USF-MAR05
-	 * @author Jake Trump | 1803-USF-MAR05
-	 * 
-	 * @return On success a list of buildings
-	 */
-	@Override
-	@GetMapping("/building")
-	public List<Building> getAllBuildings() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/**
-	 * HTTP GET getLocationById - Handles request to Location Service API retrieve
-	 * an individual location by ID.
-	 * 
-	 * @author Stephen Lovick | 1803-USF-MAR05
-	 * @author Jake Trump | 1803-USF-MAR05
-	 * @param id
-	 * @return On success it real the queried location. On Failure it returns a
-	 *         location object with an ID of "-1" and all other fields with the
-	 *         value of "Do Not Exist"
-	 */
-	@Override
-	@GetMapping("/{id}/building")
-	public List<Building> getAllBuildingsFromLocation(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@GetMapping("/building/{id}")
-	public Building getBuildingById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@PostMapping("building")
-	public Building createBuilding(Building building) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@PutMapping("building/{id}")
-	public Building updateLocation(Integer id, Building Building) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	@DeleteMapping("building/{id}")
-	public Building deleteBuildingByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	/*----------------------------------------buildings-----------------------------------*/
+//	/**
+//	 * HTTP GET getAllBuildings - Handles request to Location Service API to get
+//	 * all buildings
+//	 * 
+//	 * @author Stephen Lovick | 1803-USF-MAR05
+//	 * @author Jake Trump | 1803-USF-MAR05
+//	 * 
+//	 * @return On success a list of buildings
+//	 */
+//	@Override
+//	@GetMapping("/building")
+//	public List<Building> getAllBuildings() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	/**
+//	 * HTTP GET getLocationById - Handles request to Location Service API retrieve
+//	 * an individual location by ID.
+//	 * 
+//	 * @author Stephen Lovick | 1803-USF-MAR05
+//	 * @author Jake Trump | 1803-USF-MAR05
+//	 * @param id
+//	 * @return On success it real the queried location. On Failure it returns a
+//	 *         location object with an ID of "-1" and all other fields with the
+//	 *         value of "Do Not Exist"
+//	 */
+//	@Override
+//	@GetMapping("/{id}/building")
+//	public List<Building> getAllBuildingsFromLocation(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	@GetMapping("/building/{id}")
+//	public Building getBuildingById(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	@PostMapping("building")
+//	public Building createBuilding(Building building) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	@PutMapping("building/{id}")
+//	public Building updateLocation(Integer id, Building Building) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	@DeleteMapping("building/{id}")
+//	public Building deleteBuildingByID(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	/*---------------------------------------Rooms---------------------------------*/
 	/**
@@ -197,23 +197,20 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@GetMapping("/room")
 	public List<Room> getAllRooms() {
-		// TODO Auto-generated method stub
-		return null;
+		return locationService.findAllRoom();
 	}
 
-	
-	@Override
-	@GetMapping("/{id}/room")
-	public List<Room> getRoomsByLocation(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	
+//	@Override
+//	@GetMapping("/{id}/room")
+//	public List<Room> getRoomsByLocation(Integer id) {
+//		return null;
+//	}
 
 	@Override
 	@GetMapping("/building/{id}/room")
-	public List<Room> getRoomsByBuilding(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Room> getRoomsByBuilding(@PathVariable(name="id") Long id) {
+		return locationService.findRoomsByBuilding(id);
 	}
 	/**
 	 * HTTP GET getRoomById - Handles request to Location Service API retrieve
@@ -228,9 +225,8 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/room/{id}")
-	public Room getRoomByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Room getRoomByID(@PathVariable(name = "id") Integer id) {
+		return locationService.findRoom(id);
 	}
 	/**
 	 * HTTP POST createRoom - Handles requests to Location Service API to create
@@ -247,24 +243,22 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PostMapping("/room")
-	public Room createRoom(Room room) {
-		// TODO Auto-generated method stub
-		return null;
+	public Room createRoom(@RequestBody Room room) {
+		return locationService.saveRoom(room);
 	}
 
 	@Override
-	@PutMapping("/room/{id}")
-	public Room updateRoom(Integer id, Room room) {
-		// TODO Auto-generated method stub
-		return null;
+	@PutMapping("/room")
+	public Room updateRoom(@RequestBody Room room) {
+		return locationService.updateRoom(room);
 	}
 
-	@Override
-	@DeleteMapping("/room/{id}")
-	public Room deleteRoomByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	@DeleteMapping("/room/{id}")
+//	public Room deleteRoomByID(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 	/*-----------------------------------Unavailabilities--------------------------------*/
 	/**
@@ -298,6 +292,54 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@PostMapping("/unavaiibilities")
 	public Unavailabilities createUnavailabilities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities unavailabilities) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Unavailabilities deleteUnavailabilities(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Building> getAllBuildings() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Building> getAllBuildingsFromLocation(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Building getBuildingById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Building createBuilding(Building building) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Building updateLocation(Integer id, Building Building) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Building deleteBuildingByID(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -25,7 +25,7 @@ public class Room {
 	@Column(name = "room_id")
 	@SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "room_id_seq", strategy = GenerationType.AUTO)
-	private Long roomId;
+	private int roomId;
 
 	@Column(name = "room_number")
 	private Long roomNumber;
@@ -48,7 +48,7 @@ public class Room {
 	public Room() {
 	}
 
-	public Room(Long roomId, Long roomNumber, Long buildingId, Long unavailability, Integer capacity) {
+	public Room(int roomId, Long roomNumber, Long buildingId, Long unavailability, Integer capacity) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
@@ -58,11 +58,11 @@ public class Room {
 	}
 
 	// Accessors and Mutators
-	public Long getRoomId() {
+	public int getRoomId() {
 		return roomId;
 	}
 
-	public void setRoomId(Long roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 
@@ -105,13 +105,16 @@ public class Room {
 				+ ", unavailability=" + unavailability + ", capacity=" + capacity + "]";
 	}
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((building == null) ? 0 : building.hashCode());
 		result = prime * result + ((buildingId == null) ? 0 : buildingId.hashCode());
 		result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
-		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
+		result = prime * result + roomId;
 		result = prime * result + ((roomNumber == null) ? 0 : roomNumber.hashCode());
 		result = prime * result + ((unavailability == null) ? 0 : unavailability.hashCode());
 		return result;
@@ -126,6 +129,11 @@ public class Room {
 		if (getClass() != obj.getClass())
 			return false;
 		Room other = (Room) obj;
+		if (building == null) {
+			if (other.building != null)
+				return false;
+		} else if (!building.equals(other.building))
+			return false;
 		if (buildingId == null) {
 			if (other.buildingId != null)
 				return false;
@@ -136,10 +144,7 @@ public class Room {
 				return false;
 		} else if (!capacity.equals(other.capacity))
 			return false;
-		if (roomId == null) {
-			if (other.roomId != null)
-				return false;
-		} else if (!roomId.equals(other.roomId))
+		if (roomId != other.roomId)
 			return false;
 		if (roomNumber == null) {
 			if (other.roomNumber != null)

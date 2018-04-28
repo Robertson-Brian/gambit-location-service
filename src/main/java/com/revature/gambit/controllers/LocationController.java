@@ -8,8 +8,13 @@ package com.revature.gambit.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.*;
-import com.revature.gambit.entities.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.revature.gambit.entities.Building;
+import com.revature.gambit.entities.Location;
+import com.revature.gambit.entities.Room;
+import com.revature.gambit.entities.Unavailabilities;
 
 public interface LocationController {
 
@@ -39,17 +44,17 @@ public interface LocationController {
 	/*--------------------------------Rooms-----------------------------------------*/
 	List<Room> getAllRooms();
 
-	List<Room> getRoomsByLocation(@PathVariable(name = "id") Integer id);
+//	List<Room> getRoomsByLocation(@PathVariable(name = "id") Integer id);
 
-	List<Room> getRoomsByBuilding(@PathVariable(name = "id") Integer id);
+	List<Room> getRoomsByBuilding(@PathVariable(name = "id") Long id);
 
 	Room getRoomByID(@PathVariable(name = "id") Integer id);
 
 	Room createRoom(@RequestBody Room room);
 
-	Room updateRoom(@PathVariable(name = "id") Integer id, @RequestBody Room room);
+	Room updateRoom(@RequestBody Room room);
 
-	Room deleteRoomByID(@PathVariable(name = "id") Integer id);
+//	Room deleteRoomByID(@PathVariable(name = "id") Integer id);
 	
 	/*-------------------------------Availability----------------------------------*/
 	
@@ -57,5 +62,6 @@ public interface LocationController {
 	Unavailabilities createUnavailabilities();
 	Unavailabilities updateUnavailabilities(@PathVariable(name = "id") Integer id, @RequestBody Unavailabilities unavailabilities);
 	Unavailabilities deleteUnavailabilities(@PathVariable(name = "id") Integer id);
+
 
 }

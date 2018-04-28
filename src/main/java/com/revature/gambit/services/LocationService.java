@@ -1,6 +1,5 @@
-package com.revature.gambit.services;
+	package com.revature.gambit.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,17 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.gambit.entities.Location;
+import com.revature.gambit.entities.Room;
 import com.revature.gambit.repository.LocationRepo;
+import com.revature.gambit.repository.RoomRepo;
 
 @Service
 public class LocationService {
 
-	LocationRepo repository;
+	LocationRepo locationRepo;
+	RoomRepo roomRepo;
 
 	//Constructor
 	@Autowired
-	public LocationService(LocationRepo repository) {
-		this.repository = repository;
+	public LocationService(LocationRepo locationRepo, RoomRepo roomRepo) {
+		this.locationRepo = locationRepo;
+		this.roomRepo = roomRepo;
 	}
 
 	public LocationService() {
@@ -31,7 +34,7 @@ public class LocationService {
 	 * @return List of Locations
 	 */
 	public List<Location> findAllLocation() {
-		return repository.findAll();
+		return locationRepo.findAll();
 	}
 
 	/**
@@ -42,7 +45,7 @@ public class LocationService {
 	 *         null.
 	 */
 	public Location findLocationByID(Integer id) {
-		Optional<Location> result = Optional.of(repository.findLocationByLocationId(id.longValue()));
+		Optional<Location> result = Optional.of(locationRepo.findLocationByLocationId(id.longValue()));
 		if (result.isPresent()) {
 			return result.get();
 		} else {
@@ -58,7 +61,7 @@ public class LocationService {
 	 * @return
 	 */
 	public Location saveLocation(Location location) {
-		return repository.saveAndFlush(location);
+		return locationRepo.saveAndFlush(location);
 	}
 
 	/**
@@ -67,9 +70,48 @@ public class LocationService {
 	 * @return
 	 */
 	public Location deactivateLocation(Integer locationId) {
-		Location deactivating = repository.findLocationByLocationId(locationId.longValue());
+		Location deactivating = locationRepo.findLocationByLocationId(locationId.longValue());
 		deactivating.setActive(false);
-		return repository.saveAndFlush(deactivating);
+		return locationRepo.saveAndFlush(deactivating);
 	}
+	
+//*********************ROOMS****************************************	
+	
+	public List<Room> findAllRoom() {
+		return roomRepo.findAll();
+	}
+	
+	public Room findRoom(int id) {
+		Optional<Room> result = Optional.of(roomRepo.findRoomByRoomId(id));
+		if (result.isPresent()) {
+			return result.get();
+		} else {
+			return null;
+		}
+	}
+	
+	public List<Room> findRoomsByBuilding(Long id) {
+		return roomRepo.findAllByBuildingIdOrderByRoomNumber(id);
+	}
+	
+	public Room saveRoom(Room room) {
+		return roomRepo.saveAndFlush(room);
+	}
+	
+	public Room updateRoom(Room room) {
+		Room check = roomRepo.findRoomByRoomId(room.getRoomId());
+		if(check != null) {
+			roomRepo.saveAndFlush(room);
+			return room;
+		}else {
+			return check;
+		}
+	}
+	
+	
+	
+	
+
+	
 
 }
