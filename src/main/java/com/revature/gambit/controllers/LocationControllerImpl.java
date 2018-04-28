@@ -132,7 +132,7 @@ public class LocationControllerImpl implements LocationController {
 	 * @return On success a list of buildings
 	 */
 	@Override
-	@GetMapping("/building")
+	@GetMapping("/building/")
 	public List<Building> getAllBuildings() {
 		return locationService.findAllBuilding();
 	}
