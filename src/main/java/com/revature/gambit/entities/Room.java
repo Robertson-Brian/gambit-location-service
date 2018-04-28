@@ -38,7 +38,6 @@ public class Room {
 	//TODO: Remove
 	private Long buildingId;
 
-	@Column(name = "unavailability_id")
 	private Long unavailability;
 
 	@Column(name = "capacity")

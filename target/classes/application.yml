@@ -5,3 +5,10 @@ spring:
     username: jtrump  
     password: Ahdujv567
     
+    
+  jpa:
+   generate-ddl: false
+   properties:
+      hibernate:
+      show_sql: true
+   
