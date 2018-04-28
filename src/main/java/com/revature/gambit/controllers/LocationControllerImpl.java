@@ -224,22 +224,13 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@GetMapping("/room")
 	public List<Room> getAllRooms() {
-		// TODO Auto-generated method stub
-		return null;
+		return locationService.findAllRoom();
 	}
-
-	@Override
-	@GetMapping("/{id}/room")
-	public List<Room> getRoomsByLocation(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	@Override
 	@GetMapping("/building/{id}/room")
-	public List<Room> getRoomsByBuilding(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Room> getRoomsByBuilding(@PathVariable(name="id") Long id) {
+		return locationService.findRoomsByBuilding(id);
 	}
 
 	/**
@@ -255,9 +246,8 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/room/{id}")
-	public Room getRoomByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Room getRoomByID(@PathVariable(name = "id") Integer id) {
+		return locationService.findRoom(id);
 	}
 
 	/**
@@ -275,16 +265,14 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PostMapping("/room")
-	public Room createRoom(Room room) {
-		// TODO Auto-generated method stub
-		return null;
+	public Room createRoom(@RequestBody Room room) {
+		return locationService.saveRoom(room);
 	}
 
 	@Override
-	@PutMapping("/room/{id}")
-	public Room updateRoom(Integer id, Room room) {
-		// TODO Auto-generated method stub
-		return null;
+	@PutMapping("/room")
+	public Room updateRoom(@RequestBody Room room) {
+		return locationService.updateRoom(room);
 	}
 
 //	@Override
@@ -331,17 +319,19 @@ public class LocationControllerImpl implements LocationController {
 		return null;
 	}
 
-	// @Override
-	// public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities
-	// unavailabilities) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
-	//
-	// @Override
-	// public Unavailabilities deleteUnavailabilities(Integer id) {
-	// // TODO Auto-generated method stub
-	// return null;
-	// }
+
+
+//	@Override
+//	public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities unavailabilities) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	@Override
+//	public Unavailabilities deleteUnavailabilities(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 
 }
