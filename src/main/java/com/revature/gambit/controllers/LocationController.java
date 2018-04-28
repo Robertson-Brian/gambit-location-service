@@ -32,9 +32,9 @@ public interface LocationController {
 
 	Building createBuilding(@RequestBody Building building);
 
-	Building updateLocation(@PathVariable(name = "id") Integer id, @RequestBody Building Building);
+	Building updateBuilding(@PathVariable(name = "id") Integer id, @RequestBody Building Building);
 
-	Building deleteBuildingByID(@PathVariable(name = "id") Integer id);
+	//Building deleteBuildingByID(@PathVariable(name = "id") Integer id);
 
 	/*--------------------------------Rooms-----------------------------------------*/
 	List<Room> getAllRooms();
@@ -49,13 +49,13 @@ public interface LocationController {
 
 	Room updateRoom(@PathVariable(name = "id") Integer id, @RequestBody Room room);
 
-	Room deleteRoomByID(@PathVariable(name = "id") Integer id);
+	//Room deleteRoomByID(@PathVariable(name = "id") Integer id);
 	
 	/*-------------------------------Availability----------------------------------*/
 	
 	List<Unavailabilities>getAllUnavailabilities();
 	Unavailabilities createUnavailabilities();
-	Unavailabilities updateUnavailabilities(@PathVariable(name = "id") Integer id, @RequestBody Unavailabilities unavailabilities);
-	Unavailabilities deleteUnavailabilities(@PathVariable(name = "id") Integer id);
+	//Unavailabilities updateUnavailabilities(@PathVariable(name = "id") Integer id, @RequestBody Unavailabilities unavailabilities);
+	//Unavailabilities deleteUnavailabilities(@PathVariable(name = "id") Integer id);
 
 }

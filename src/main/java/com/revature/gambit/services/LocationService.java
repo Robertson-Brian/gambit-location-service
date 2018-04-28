@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.gambit.entities.Building;
 import com.revature.gambit.entities.Location;
 import com.revature.gambit.repository.LocationRepo;
 
@@ -15,7 +16,7 @@ public class LocationService {
 
 	LocationRepo repository;
 
-	//Constructor
+	// Constructor
 	@Autowired
 	public LocationService(LocationRepo repository) {
 		this.repository = repository;
@@ -36,6 +37,7 @@ public class LocationService {
 
 	/**
 	 * Finds the location by the Id number;
+	 * 
 	 * @author Stephen Lovick | 1803-MAR05-USF
 	 * @param id
 	 * @return On Success it returns the queried location. On failure it returns
@@ -53,6 +55,7 @@ public class LocationService {
 
 	/**
 	 * Saves the location and returns it after being written to the database.
+	 * 
 	 * @author Stephen Lovick | 1803-MAR05-USF
 	 * @param location
 	 * @return
@@ -63,6 +66,7 @@ public class LocationService {
 
 	/**
 	 * Deactivates the location with the specified LocationID
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -71,5 +75,52 @@ public class LocationService {
 		deactivating.setActive(false);
 		return repository.saveAndFlush(deactivating);
 	}
+
+	/*-----------------------------Building---------------------------*/
+	/**
+	 * Returns all Buildings from repository.
+	 * 
+	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @return
+	 */
+	public List<Building> findAllBuilding() {
+		return repository.findAllBuilding();
+	}
+
+	/**
+	 * Find all building at a location by LocationId.
+	 * 
+	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @param id
+	 * @return
+	 */
+	public List<Building> findBuildingByLocationId(Integer id) {
+		return repository.findAllBuildingByLocationId(id.longValue());
+	}
+
+	/**
+	 * Find a building by BuildingId.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Building findBuildingByBuildingID(Integer id) {
+		return repository.findBuildingByBuildingId(id.longValue());
+	}
+
+	/**
+	 * Saves and flushes changes to a building.
+	 * 
+	 * @param building
+	 * @return
+	 */
+	public Building saveBuilding(Building building) {
+		return repository.saveAndFlush(building);
+	}
+
+	// public Building deactivateBuilding(Integer id) {
+	// Building deactivating = repository.findBuildingByBuildingId(id.longValue());
+	// return null;
+	// }
 
 }

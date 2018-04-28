@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.revature.gambit.entities.Building;
 import com.revature.gambit.entities.Location;
@@ -123,8 +123,8 @@ public class LocationControllerImpl implements LocationController {
 
 	/*----------------------------------------buildings-----------------------------------*/
 	/**
-	 * HTTP GET getAllBuildings - Handles request to Location Service API to get
-	 * all buildings
+	 * HTTP GET getAllBuildings - Handles request to Location Service API to get all
+	 * buildings
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -134,60 +134,87 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@GetMapping("/building")
 	public List<Building> getAllBuildings() {
-		// TODO Auto-generated method stub
-		return null;
+		return locationService.findAllBuilding();
 	}
 
 	/**
 	 * HTTP GET getLocationById - Handles request to Location Service API retrieve
-	 * an individual location by ID.
+	 * all buildings from an individual location by ID.
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
 	 * @param id
-	 * @return On success it real the queried location. On Failure it returns a
-	 *         location object with an ID of "-1" and all other fields with the
+	 * @return On success it will return the queried location. On Failure it returns
+	 *         a location object with an ID of "-1" and all other fields with the
 	 *         value of "Do Not Exist"
 	 */
 	@Override
 	@GetMapping("/{id}/building")
-	public List<Building> getAllBuildingsFromLocation(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Building> getAllBuildingsFromLocation(@PathVariable(name = "id") Integer id) {
+		return locationService.findBuildingByLocationId(id);
 	}
 
+	/**
+	 * HTTP POST - buildingById - Handles request to Location Service API to
+	 * retrieve a building by id.
+	 * 
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @author Jake Trump | 1803-USF-MAR05
+	 * @param id
+	 * @return On success will return the queried building
+	 */
 	@Override
 	@GetMapping("/building/{id}")
-	public Building getBuildingById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Building getBuildingById(@PathVariable(name = "id") Integer id) {
+		return locationService.findBuildingByBuildingID(id);
 	}
 
+	/**
+	 * HTTP POST - createBuilding - Handles request to Location Service API to
+	 * create a new building
+	 * 
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @author Jake Trump | 1803-USF-MAR05
+	 * @param id
+	 */
 	@Override
 	@PostMapping("building")
-	public Building createBuilding(Building building) {
-		// TODO Auto-generated method stub
-		return null;
+	public Building createBuilding(@RequestBody Building building) {
+		return locationService.saveBuilding(building);
 	}
 
+	/**
+	 * HTTP PUT - updateBuilding - Handle request to Location Service API to update
+	 * an existing building.
+	 * 
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @author Jake Trump | 1803-USF-MAR05
+	 * @param id
+	 * 
+	 */
 	@Override
 	@PutMapping("building/{id}")
-	public Building updateLocation(Integer id, Building Building) {
-		// TODO Auto-generated method stub
-		return null;
+	public Building updateBuilding(@PathVariable(name = "id")Integer id, @RequestBody Building building) {
+		return locationService.saveBuilding(building);
 	}
 
-	@Override
-	@DeleteMapping("building/{id}")
-	public Building deleteBuildingByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+	/**
+//	 * HTTP DELETE - deleteBuildingByID - Handles request to Location Service API to
+//	 * update an existing building.
+//	 * @author Stephen Lovick | 1803-USF-MAR05
+//	 * @author Jake Trump | 1803-USF-MAR05
+//	 * @param id
+//	 */
+//	@Override
+//	@DeleteMapping("building/{id}")
+//	public Building deleteBuildingByID(@PathVariable(name = "id") Integer id) {
+//		return locationService.deactivateBuilding(id);
+//	}
+
 	/*---------------------------------------Rooms---------------------------------*/
 	/**
-	 * HTTP GET getAllRooms - Handles request to Location Service API to get
-	 * all rooms.
+	 * HTTP GET getAllRooms - Handles request to Location Service API to get all
+	 * rooms.
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -201,7 +228,6 @@ public class LocationControllerImpl implements LocationController {
 		return null;
 	}
 
-	
 	@Override
 	@GetMapping("/{id}/room")
 	public List<Room> getRoomsByLocation(Integer id) {
@@ -215,9 +241,10 @@ public class LocationControllerImpl implements LocationController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
-	 * HTTP GET getRoomById - Handles request to Location Service API retrieve
-	 * an individual room by ID.
+	 * HTTP GET getRoomById - Handles request to Location Service API retrieve an
+	 * individual room by ID.
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -232,9 +259,10 @@ public class LocationControllerImpl implements LocationController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
-	 * HTTP POST createRoom - Handles requests to Location Service API to create
-	 * a new location
+	 * HTTP POST createRoom - Handles requests to Location Service API to create a
+	 * new location
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -259,17 +287,17 @@ public class LocationControllerImpl implements LocationController {
 		return null;
 	}
 
-	@Override
-	@DeleteMapping("/room/{id}")
-	public Room deleteRoomByID(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
+//	@Override
+//	@DeleteMapping("/room/{id}")
+//	public Room deleteRoomByID(Integer id) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
 	/*-----------------------------------Unavailabilities--------------------------------*/
 	/**
-	 * HTTP GET getAllUnavailabilites - Handles request to Location Service API to get
-	 * all unavailabilites
+	 * HTTP GET getAllUnavailabilites - Handles request to Location Service API to
+	 * get all unavailabilites
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -282,9 +310,10 @@ public class LocationControllerImpl implements LocationController {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	/**
-	 * HTTP POST createUnavailabilities - Handles requests to Location Service API to create
-	 * a new unavailabilities
+	 * HTTP POST createUnavailabilities - Handles requests to Location Service API
+	 * to create a new unavailabilities
 	 * 
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
@@ -302,16 +331,17 @@ public class LocationControllerImpl implements LocationController {
 		return null;
 	}
 
-//	@Override
-//	public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities unavailabilities) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	@Override
-//	public Unavailabilities deleteUnavailabilities(Integer id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	// @Override
+	// public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities
+	// unavailabilities) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
+	//
+	// @Override
+	// public Unavailabilities deleteUnavailabilities(Integer id) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 }
