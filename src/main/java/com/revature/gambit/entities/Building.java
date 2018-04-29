@@ -7,15 +7,11 @@ package com.revature.gambit.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name="buildings")
@@ -33,13 +29,9 @@ public class Building {
 	@Column(name="building_number")
 	private Long buildingNumber;
 
-	@Transient
-	@ManyToOne(fetch=FetchType.LAZY)
-	//@Column(name="location_id")
-	@JoinColumn(name="location_id")
-	private Location location;
-	
+	@Column(name="LOCATION_ID")
 	private Long locationId;
+	
 
 	//Constructor
 	public Building() { }

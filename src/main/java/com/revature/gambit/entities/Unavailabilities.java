@@ -35,6 +35,9 @@ public class Unavailabilities {
 	@Column(name = "comments")
 	private String comments;
 	
+	@Column(name = "room_id")
+	private Long roomId;
+	
 	//Constructors
 	public Unavailabilities( ) { }
 

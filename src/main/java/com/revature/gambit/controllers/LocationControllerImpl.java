@@ -178,7 +178,7 @@ public class LocationControllerImpl implements LocationController {
 	 * @param id
 	 */
 	@Override
-	@PostMapping("building")
+	@PostMapping("/building")
 	public Building createBuilding(@RequestBody Building building) {
 		return locationService.saveBuilding(building);
 	}
@@ -193,7 +193,7 @@ public class LocationControllerImpl implements LocationController {
 	 * 
 	 */
 	@Override
-	@PutMapping("building/{id}")
+	@PutMapping("/building/{id}")
 	public Building updateBuilding(@PathVariable(name = "id")Integer id, @RequestBody Building building) {
 		return locationService.saveBuilding(building);
 	}
