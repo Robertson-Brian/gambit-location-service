@@ -317,8 +317,6 @@ public class LocationControllerImpl implements LocationController {
 		return locationService.createUnavailabilities(unavailabilities);
 	}
 
-
-
 //	@Override
 //	public Unavailabilities updateUnavailabilities(Long id, Unavailabilities unavailabilities) {
 //		// TODO Auto-generated method stub
