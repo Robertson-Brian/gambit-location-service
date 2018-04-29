@@ -25,10 +25,11 @@ public class LocationService {
 
 	// Constructor
 	@Autowired
-	public LocationService(LocationRepo locationRepo, BuildingRepo buildingRepo,RoomRepo roomRepo) {
+	public LocationService(LocationRepo locationRepo, BuildingRepo buildingRepo,RoomRepo roomRepo, UnavailRepository unavailRepo) {
 		this.locationRepo = locationRepo;
 		this.buildingRepo = buildingRepo;
 		this.roomRepo = roomRepo;
+		this.unavailRepo = unavailRepo;
 
 	}
 
