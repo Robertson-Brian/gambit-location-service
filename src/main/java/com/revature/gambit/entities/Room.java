@@ -25,7 +25,7 @@ public class Room {
 	@Column(name = "room_id")
 	@SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
 	@GeneratedValue(generator = "room_id_seq", strategy = GenerationType.AUTO)
-	private int roomId;
+	private Long roomId;
 
 	@Column(name = "room_number")
 	private Long roomNumber;
@@ -35,10 +35,8 @@ public class Room {
 	@JoinColumn(name= "building_id")
 	@Transient
 	private Building building;
-	//TODO: Remove
+	
 	private Long buildingId;
-
-	private Long unavailability;
 
 	@Column(name = "capacity")
 	private Integer capacity;
@@ -47,21 +45,20 @@ public class Room {
 	public Room() {
 	}
 
-	public Room(int roomId, Long roomNumber, Long buildingId, Long unavailability, Integer capacity) {
+	public Room(Long roomId, Long roomNumber, Building building, Long buildingId, Integer capacity) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
+		this.building = building;
 		this.buildingId = buildingId;
-		this.unavailability = unavailability;
 		this.capacity = capacity;
 	}
 
-	// Accessors and Mutators
-	public int getRoomId() {
+	public Long getRoomId() {
 		return roomId;
 	}
 
-	public void setRoomId(int roomId) {
+	public void setRoomId(Long roomId) {
 		this.roomId = roomId;
 	}
 
@@ -73,20 +70,20 @@ public class Room {
 		this.roomNumber = roomNumber;
 	}
 
+	public Building getBuilding() {
+		return building;
+	}
+
+	public void setBuilding(Building building) {
+		this.building = building;
+	}
+
 	public Long getBuildingId() {
 		return buildingId;
 	}
 
 	public void setBuildingId(Long buildingId) {
 		this.buildingId = buildingId;
-	}
-
-	public Long getUnavailability() {
-		return unavailability;
-	}
-
-	public void setUnavailability(Long unavailability) {
-		this.unavailability = unavailability;
 	}
 
 	public Integer getCapacity() {
@@ -97,14 +94,11 @@ public class Room {
 		this.capacity = capacity;
 	}
 
-	// toString, hashCode, equals
 	@Override
 	public String toString() {
-		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", buildingId=" + buildingId
-				+ ", unavailability=" + unavailability + ", capacity=" + capacity + "]";
+		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", building=" + building + ", buildingId="
+				+ buildingId + ", capacity=" + capacity + "]";
 	}
-
-
 
 	@Override
 	public int hashCode() {
@@ -113,9 +107,8 @@ public class Room {
 		result = prime * result + ((building == null) ? 0 : building.hashCode());
 		result = prime * result + ((buildingId == null) ? 0 : buildingId.hashCode());
 		result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
-		result = prime * result + roomId;
+		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
 		result = prime * result + ((roomNumber == null) ? 0 : roomNumber.hashCode());
-		result = prime * result + ((unavailability == null) ? 0 : unavailability.hashCode());
 		return result;
 	}
 
@@ -143,19 +136,19 @@ public class Room {
 				return false;
 		} else if (!capacity.equals(other.capacity))
 			return false;
-		if (roomId != other.roomId)
+		if (roomId == null) {
+			if (other.roomId != null)
+				return false;
+		} else if (!roomId.equals(other.roomId))
 			return false;
 		if (roomNumber == null) {
 			if (other.roomNumber != null)
 				return false;
 		} else if (!roomNumber.equals(other.roomNumber))
 			return false;
-		if (unavailability == null) {
-			if (other.unavailability != null)
-				return false;
-		} else if (!unavailability.equals(other.unavailability))
-			return false;
 		return true;
 	}
 
+		
+	
 }

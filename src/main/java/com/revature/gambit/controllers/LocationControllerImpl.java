@@ -64,7 +64,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/{id}")
-	public Location getLocationByID(@PathVariable(name = "id") Integer id) {
+	public Location getLocationByID(@PathVariable(name = "id") Long id) {
 		return locationService.findLocationByID(id);
 	}
 
@@ -100,7 +100,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PutMapping("/{id}")
-	public Location updateLocation(@PathVariable(name = "id") Integer id, Location location) {
+	public Location updateLocation(@PathVariable(name = "id") Long id, Location location) {
 		return locationService.saveLocation(location);
 	}
 
@@ -117,7 +117,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@DeleteMapping("/{id}")
-	public Location deleteLocationByID(@PathVariable(name = "id") Integer id) {
+	public Location deleteLocationByID(@PathVariable(name = "id") Long id) {
 		return locationService.deactivateLocation(id);
 	}
 
@@ -150,7 +150,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/{id}/building")
-	public List<Building> getAllBuildingsFromLocation(@PathVariable(name = "id") Integer id) {
+	public List<Building> getAllBuildingsFromLocation(@PathVariable(name = "id") Long id) {
 		return locationService.findBuildingByLocationId(id);
 	}
 
@@ -165,7 +165,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/building/{id}")
-	public Building getBuildingById(@PathVariable(name = "id") Integer id) {
+	public Building getBuildingById(@PathVariable(name = "id") Long id) {
 		return locationService.findBuildingByBuildingID(id);
 	}
 
@@ -194,7 +194,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PutMapping("building/{id}")
-	public Building updateBuilding(@PathVariable(name = "id")Integer id, @RequestBody Building building) {
+	public Building updateBuilding(@PathVariable(name = "id")Long id, @RequestBody Building building) {
 		return locationService.saveBuilding(building);
 	}
 
@@ -207,7 +207,7 @@ public class LocationControllerImpl implements LocationController {
 //	 */
 //	@Override
 //	@DeleteMapping("building/{id}")
-//	public Building deleteBuildingByID(@PathVariable(name = "id") Integer id) {
+//	public Building deleteBuildingByID(@PathVariable(name = "id") Long id) {
 //		return locationService.deactivateBuilding(id);
 //	}
 
@@ -246,7 +246,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@GetMapping("/room/{id}")
-	public Room getRoomByID(@PathVariable(name = "id") Integer id) {
+	public Room getRoomByID(@PathVariable(name = "id") Long id) {
 		return locationService.findRoom(id);
 	}
 
@@ -277,7 +277,7 @@ public class LocationControllerImpl implements LocationController {
 
 //	@Override
 //	@DeleteMapping("/room/{id}")
-//	public Room deleteRoomByID(Integer id) {
+//	public Room deleteRoomByID(Long id) {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
@@ -295,8 +295,7 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@GetMapping("/unavailabilities")
 	public List<Unavailabilities> getAllUnavailabilities() {
-		// TODO Auto-generated method stub
-		return null;
+		return locationService.findAllUnavailabilities();
 	}
 
 	/**
@@ -314,21 +313,20 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PostMapping("/unavaiibilities")
-	public Unavailabilities createUnavailabilities() {
-		// TODO Auto-generated method stub
-		return null;
+	public Unavailabilities createUnavailabilities(@RequestBody Unavailabilities unavailabilities) {
+		return locationService.createUnavailabilities(unavailabilities);
 	}
 
 
 
 //	@Override
-//	public Unavailabilities updateUnavailabilities(Integer id, Unavailabilities unavailabilities) {
+//	public Unavailabilities updateUnavailabilities(Long id, Unavailabilities unavailabilities) {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}
 //
 //	@Override
-//	public Unavailabilities deleteUnavailabilities(Integer id) {
+//	public Unavailabilities deleteUnavailabilities(Long id) {
 //		// TODO Auto-generated method stub
 //		return null;
 //	}

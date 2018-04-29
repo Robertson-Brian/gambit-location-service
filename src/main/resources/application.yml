@@ -1,14 +1,11 @@
 spring:
-  datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
-    username: jtrump  
-    password: Ahdujv567
-    
-    
   jpa:
-   generate-ddl: false
-   properties:
-      hibernate:
-      show_sql: true
-   
+    database: oracle
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url:
+    username: 
+    password: 
+    driver-class-name: 

@@ -8,7 +8,7 @@ import com.revature.gambit.entities.Room;
 
 public interface RoomRepo extends JpaRepository<Room, Integer>{
 	
-	Room findRoomByRoomId(int id);
+	Room findRoomByRoomId(Long id);
 	
 	List<Room> findAllByBuildingIdOrderByRoomNumber(Long id);
 

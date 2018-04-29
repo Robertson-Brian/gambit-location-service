@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import com.revature.gambit.entities.Building;
 import com.revature.gambit.entities.Location;
 import com.revature.gambit.entities.Room;
+import com.revature.gambit.entities.Unavailabilities;
 import com.revature.gambit.repository.BuildingRepo;
 import com.revature.gambit.repository.LocationRepo;
 import com.revature.gambit.repository.RoomRepo;
+import com.revature.gambit.repository.UnavailRepository;
 
 @Service
 public class LocationService {
@@ -19,6 +21,7 @@ public class LocationService {
 	LocationRepo locationRepo;
 	RoomRepo roomRepo;
 	BuildingRepo buildingRepo;
+	UnavailRepository unavailRepo;
 
 	// Constructor
 	@Autowired
@@ -50,7 +53,7 @@ public class LocationService {
 	 * @return On Success it returns the queried location. On failure it returns
 	 *         null.
 	 */
-	public Location findLocationByID(Integer id) {
+	public Location findLocationByID(Long id) {
 		Optional<Location> result = Optional.of(locationRepo.findLocationByLocationId(id.longValue()));
 		if (result.isPresent()) {
 			return result.get();
@@ -77,7 +80,7 @@ public class LocationService {
 	 * @param id
 	 * @return
 	 */
-	public Location deactivateLocation(Integer locationId) {
+	public Location deactivateLocation(Long locationId) {
 		Location deactivating = locationRepo.findLocationByLocationId(locationId.longValue());
 		deactivating.setActive(false);
 		return locationRepo.saveAndFlush(deactivating);
@@ -92,7 +95,6 @@ public class LocationService {
 	 * @return
 	 */
 	public List<Building> findAllBuilding() {
-		System.out.println(buildingRepo.findAll());
 		return buildingRepo.findAll();
 	}
 
@@ -103,7 +105,7 @@ public class LocationService {
 	 * @param id
 	 * @return
 	 */
-	public List<Building> findBuildingByLocationId(Integer id) {
+	public List<Building> findBuildingByLocationId(Long id) {
 		return buildingRepo.findByLocationId(id.longValue());
 	}
 
@@ -113,7 +115,7 @@ public class LocationService {
 	 * @param id
 	 * @return
 	 */
-	public Building findBuildingByBuildingID(Integer id) {
+	public Building findBuildingByBuildingID(Long id) {
 		return buildingRepo.findByBuildingId(id.longValue());
 	}
 
@@ -133,7 +135,7 @@ public class LocationService {
 		return roomRepo.findAll();
 	}
 	
-	public Room findRoom(int id) {
+	public Room findRoom(Long id) {
 		Optional<Room> result = Optional.of(roomRepo.findRoomByRoomId(id));
 		if (result.isPresent()) {
 			return result.get();
@@ -159,10 +161,20 @@ public class LocationService {
 			return check;
 		}
 	}
+
+	/*-------------------Unavailabilities-------------------------*/
+	public List<Unavailabilities> findAllUnavailabilities() {
+		return unavailRepo.findAll();
+	}
+
+	public Unavailabilities createUnavailabilities(Unavailabilities unavailabilities) {
+		return unavailRepo.saveAndFlush(unavailabilities);
+	}
+	
 	
 	
 
-	// public Building deactivateBuilding(Integer id) {
+	// public Building deactivateBuilding(Long id) {
 	// Building deactivating = repository.findBuildingByBuildingId(id.longValue());
 	// return null;
 	// }

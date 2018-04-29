@@ -35,20 +35,23 @@ public class Unavailabilities {
 	@Column(name = "comments")
 	private String comments;
 	
+	@Column(name = "room_id")
+	private Long roomId;
+	
 	//Constructors
 	public Unavailabilities( ) { }
 
 	public Unavailabilities(Long unavailabilitiesId, LocalDate startDate, LocalDate endDate, Long batchId,
-			String comments) {
+			String comments, Long roomId) {
 		super();
 		this.unavailabilitiesId = unavailabilitiesId;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.batchId = batchId;
 		this.comments = comments;
+		this.roomId = roomId;
 	}
 
-	//Accessors and Mutators
 	public Long getUnavailabilitiesId() {
 		return unavailabilitiesId;
 	}
@@ -88,13 +91,19 @@ public class Unavailabilities {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
-	// toString, hashCode, equals
+
+	public Long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(Long roomId) {
+		this.roomId = roomId;
+	}
 
 	@Override
 	public String toString() {
 		return "Unavailabilities [unavailabilitiesId=" + unavailabilitiesId + ", startDate=" + startDate + ", endDate="
-				+ endDate + ", batchId=" + batchId + ", comments=" + comments + "]";
+				+ endDate + ", batchId=" + batchId + ", comments=" + comments + ", roomId=" + roomId + "]";
 	}
 
 	@Override
@@ -104,6 +113,7 @@ public class Unavailabilities {
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
 		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
+		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
 		result = prime * result + ((unavailabilitiesId == null) ? 0 : unavailabilitiesId.hashCode());
 		return result;
@@ -133,6 +143,11 @@ public class Unavailabilities {
 				return false;
 		} else if (!endDate.equals(other.endDate))
 			return false;
+		if (roomId == null) {
+			if (other.roomId != null)
+				return false;
+		} else if (!roomId.equals(other.roomId))
+			return false;
 		if (startDate == null) {
 			if (other.startDate != null)
 				return false;
@@ -145,6 +160,7 @@ public class Unavailabilities {
 			return false;
 		return true;
 	}
+
 	
 	
 	
