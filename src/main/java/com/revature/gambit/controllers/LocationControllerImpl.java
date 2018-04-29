@@ -18,6 +18,7 @@ import com.revature.gambit.entities.Room;
 import com.revature.gambit.entities.Unavailabilities;
 import com.revature.gambit.services.LocationService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("location")
 public class LocationControllerImpl implements LocationController {
