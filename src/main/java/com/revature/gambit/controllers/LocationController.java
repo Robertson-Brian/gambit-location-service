@@ -11,10 +11,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.revature.gambit.entities.Building;
 import com.revature.gambit.entities.Location;
-import com.revature.gambit.entities.Room;
-import com.revature.gambit.entities.Unavailabilities;
 
 public interface LocationController {
 
@@ -27,42 +24,5 @@ public interface LocationController {
 	Location updateLocation(@PathVariable(name = "id") Long id, @RequestBody Location location);
 
 	Location deleteLocationByID(@PathVariable(name = "id") Long id);
-
-	/*---------------------------------Buildings--------------------------------------*/
-	List<Building> getAllBuildings();
-
-	List<Building> getAllBuildingsFromLocation(@PathVariable(name = "id") Long id);
-
-	Building getBuildingById(@PathVariable(name = "id") Long id);
-
-	Building createBuilding(@RequestBody Building building);
-
-	Building updateBuilding(@PathVariable(name = "id") Long id, @RequestBody Building Building);
-
-	//Building deleteBuildingByID(@PathVariable(name = "id") Long id);
-
-	/*--------------------------------Rooms-----------------------------------------*/
-	List<Room> getAllRooms();
-
-//	List<Room> getRoomsByLocation(@PathVariable(name = "id") Long id);
-
-	List<Room> getRoomsByBuilding(@PathVariable(name = "id") Long id);
-
-	Room getRoomByID(@PathVariable(name = "id") Long id);
-
-	Room createRoom(@RequestBody Room room);
-
-	Room updateRoom(@RequestBody Room room);
-
-	//	Room deleteRoomByID(@PathVariable(name = "id") Long id);
-	//Room deleteRoomByID(@PathVariable(name = "id") Long id);
 	
-	/*-------------------------------Availability----------------------------------*/
-	
-	List<Unavailabilities>getAllUnavailabilities();
-	Unavailabilities createUnavailabilities(Unavailabilities unavailabilities);
-	//Unavailabilities updateUnavailabilities(@PathVariable(name = "id") Long id, @RequestBody Unavailabilities unavailabilities);
-	//Unavailabilities deleteUnavailabilities(@PathVariable(name = "id") Long id);
-
-
 }
