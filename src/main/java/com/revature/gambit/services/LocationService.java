@@ -1,7 +1,6 @@
 	package com.revature.gambit.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,13 +41,7 @@ public class LocationService {
 	 *         null.
 	 */
 	public Location findLocationByID(Long id) {
-		Optional<Location> result = Optional.of(locationRepo.findLocationByLocationId(id.longValue()));
-		if (result.isPresent()) {
-			return result.get();
-		} else {
-			return null;
-		}
-
+		return locationRepo.findLocationByLocationId(id);
 	}
 
 	/**

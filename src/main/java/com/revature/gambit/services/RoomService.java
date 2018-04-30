@@ -1,7 +1,6 @@
 package com.revature.gambit.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,12 +24,7 @@ public class RoomService {
 	}
 
 	public Room findRoom(Long id) {
-		Optional<Room> result = Optional.of(roomRepo.findRoomByRoomId(id));
-		if (result.isPresent()) {
-			return result.get();
-		} else {
-			return null;
-		}
+		 return roomRepo.findRoomByRoomId(id);
 	}
 
 	public List<Room> findRoomsByBuilding(Long id) {
