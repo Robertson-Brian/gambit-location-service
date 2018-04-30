@@ -39,7 +39,7 @@ public class BuildingControllerImpl implements BuildingController {
 	 * @return On success a list of buildings
 	 */
 	@Override
-	@GetMapping("/building")
+	@GetMapping("/")
 	public List<Building> getAllBuildings() {
 		return buildingService.findAllBuilding();
 	}
@@ -56,7 +56,7 @@ public class BuildingControllerImpl implements BuildingController {
 	 *         value of "Do Not Exist"
 	 */
 	@Override
-	@GetMapping("/{id}/building")
+	@GetMapping("/location/{id}")
 	public List<Building> getAllBuildingsFromLocation(@PathVariable(name = "id") Long id) {
 		return buildingService.findBuildingByLocationId(id);
 	}
@@ -71,7 +71,7 @@ public class BuildingControllerImpl implements BuildingController {
 	 * @return On success will return the queried building
 	 */
 	@Override
-	@GetMapping("/building/{id}")
+	@GetMapping("/{id}")
 	public Building getBuildingById(@PathVariable(name = "id") Long id) {
 		return buildingService.findBuildingByBuildingID(id);
 	}
@@ -85,7 +85,7 @@ public class BuildingControllerImpl implements BuildingController {
 	 * @param id
 	 */
 	@Override
-	@PostMapping("building")
+	@PostMapping("/")
 	public Building createBuilding(@RequestBody Building building) {
 		return buildingService.saveBuilding(building);
 	}
@@ -100,7 +100,7 @@ public class BuildingControllerImpl implements BuildingController {
 	 * 
 	 */
 	@Override
-	@PutMapping("building/{id}")
+	@PutMapping("/{id}")
 	public Building updateBuilding(@PathVariable(name = "id")Long id, @RequestBody Building building) {
 		return buildingService.saveBuilding(building);
 	}
