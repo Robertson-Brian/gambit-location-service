@@ -1,39 +1,39 @@
 --****************** Build all tables for database ********************
 
 CREATE TABLE locations (
-  location_id SERIAL PRIMARY KEY,
-  street varchar2(50) NOT NULL,
-  city varchar2(25) NOT NULL,
-  state varchar2(20) NOT NULL,
-  zip varchar2(10) NOT NULL,
-  company varchar2(25) NOT NULL,
-  active boolean NOT NULL,
+ location_id SERIAL PRIMARY KEY,
+ street varchar(50) NOT NULL,
+ city varchar(25) NOT NULL,
+ state varchar(20) NOT NULL,
+ zip varchar(10) NOT NULL,
+ company varchar(25) NOT NULL,
+ active boolean NOT NULL,
 );
 
 CREATE TABLE buildings (
-  building_id SERIAL PRIMARY KEY,
-  street_address varchar2(50) NOT NULL,
-  building_number varchar2(10),
-  LOCATION_ID integer not null,
-  foreign key (LOCATION_ID) references LOCATIONS (LOCATION_ID)
+ building_id SERIAL PRIMARY KEY,
+ street_address varchar(50) NOT NULL,
+ building_number varchar(10),
+ LOCATION_ID integer not null,
+ foreign key (LOCATION_ID) references LOCATIONS (LOCATION_ID)
 );
 
 CREATE TABLE rooms (
-  room_id serial PRIMARY KEY,
-  room_number varchar2(20) NOT NULL,
-  building_id integer NOT NULL,
-  capacity integer NOT NULL,
-  FOREIGN KEY (building_id) REFERENCES BUILDINGS(BUILDING_ID)
+ room_id serial PRIMARY KEY,
+ room_number varchar(20) NOT NULL,
+ building_id integer NOT NULL,
+ capacity integer NOT NULL,
+ FOREIGN KEY (building_id) REFERENCES BUILDINGS(BUILDING_ID)
 );
 
-CREATE TABLE `unavailabilities` (
-  `unavailability_id` SERIAL PRIMARY KEY,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `room_id` integer NOT NULL,
-  `comments` varchar2(255),
-  `batch_id?` integer,
-  FOREIGN KEY (room_id) REFERENCES rooms(room_id)
+CREATE TABLE unavailabilities (
+ unavailability_id SERIAL PRIMARY KEY,
+ start_date date NOT NULL,
+ end_date date NOT NULL,
+ room_id integer NOT NULL,
+ comments varchar(255),
+ batch_id integer,
+ FOREIGN KEY (room_id) REFERENCES rooms(room_id)
 );
 
 
@@ -45,11 +45,39 @@ VALUES ('11730 Plaza America Dr #205', 'Reston', 'Virginia', '20190', 'HQ_Revatu
 INSERT INTO LOCATIONS (street, city, state,  zip, company, active)  
 VALUES ('3220 Banyan Circle', 'Tampa', 'Florida', '33613', 'USF_Revature', true);
 
+
 INSERT INTO buildings(street_address, building_number, location_id)
 VALUES('3220 Banyan Circle', null, 2)
 
 INSERT INTO buildings(street_address, building_number, location_id)
 VALUES('11730 Plaza America Dr', '205', 1)
+
+
+INSERT INTO rooms(room_number, building_id, capacity)
+VALUES('101', 1, 25);
+
+INSERT INTO rooms(room_number, building_id, capacity)
+VALUES('102', 1, 30);
+
+INSERT INTO rooms(room_number, building_id, capacity)
+VALUES('103', 1, 25);
+
+INSERT INTO rooms(room_number, building_id, capacity)
+VALUES('200A', 2, 30);
+
+INSERT INTO rooms(room_number, building_id, capacity)
+VALUES('200B', 2, 30);
+
+
+INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
+VALUES('2018-03-01' , '2018-03-15', 1, 'Painting and Maintanence', null);
+
+INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
+VALUES('2018-01-15' , '2018-05-05', 5, 'USF class in session', null);
+
+INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
+VALUES('2018-08-04' , '2018-11-12', 4, 'USF class in session', null);
+
 
 
 
@@ -58,18 +86,15 @@ VALUES('11730 Plaza America Dr', '205', 1)
 CREATE USER ls_user WITH PASSWORD 'location';
 
 GRANT ALL PRIVILEGES ON
- buildings, locations, rooms, unavailabilities  
- TO ls_admin
- ;
- 
- GRANT ALL PRIVILEGES ON
- buildings_building_id_seq
- , locations_location_id_seq
- , rooms_room_id_seq
- , unavailabilities_unavailability_id_seq
- TO ls_admin
- ;
+buildings, locations, rooms, unavailabilities  
+TO ls_admin
+;
 
-
-
+GRANT ALL PRIVILEGES ON
+buildings_building_id_seq
+, locations_location_id_seq
+, rooms_room_id_seq
+, unavailabilities_unavailability_id_seq
+TO ls_admin
+;
 

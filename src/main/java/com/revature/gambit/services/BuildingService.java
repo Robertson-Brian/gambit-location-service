@@ -64,6 +64,14 @@ public class BuildingService {
 		return buildingRepo.saveAndFlush(building);
 	}
 
+	public Building updateBuilding(Building building) {
+		Building check =findBuildingByBuildingID(building.getBuildingId());
+		if(check != null) {
+			return buildingRepo.saveAndFlush(building);
+		}
+		return check;
+	}
+
 //	public Building deactivateBuilding(Long id) {
 //		Building deactivate = buildingRepo.getOne(id);
 //	}

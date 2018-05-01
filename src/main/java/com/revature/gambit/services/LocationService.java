@@ -68,4 +68,12 @@ public class LocationService {
 
 	}
 
+	public Location updateLocation(Location location) {
+		Location check = findLocationByID(location.getLocationId());
+		if(check != null) {
+			return locationRepo.saveAndFlush(location);
+		}
+		return check;
+	}
+
 }

@@ -15,7 +15,7 @@ import com.revature.gambit.services.UnavailService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("unavailability")
+@RequestMapping("unavailabilities")
 public class UnavailControllerImpl implements UnavailController {
 
 	private UnavailService unavailService;

@@ -18,7 +18,7 @@ import com.revature.gambit.services.LocationService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("location")
+@RequestMapping("locations")
 public class LocationControllerImpl implements LocationController {
 
 	LocationService locationService;
@@ -100,7 +100,7 @@ public class LocationControllerImpl implements LocationController {
 	@Override
 	@PutMapping("/{id}")
 	public Location updateLocation(@PathVariable(name = "id") Long id, @RequestBody Location location) {
-		return locationService.saveLocation(location);
+		return locationService.updateLocation(location);
 	}
 
 	/**

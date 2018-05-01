@@ -17,7 +17,7 @@ import com.revature.gambit.services.RoomService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("room")
+@RequestMapping("rooms")
 public class RoomControllerImpl implements RoomController {
 
 	RoomService roomService;

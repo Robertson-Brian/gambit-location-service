@@ -17,7 +17,7 @@ import com.revature.gambit.services.BuildingService;
 
 @CrossOrigin
 @RestController
-@RequestMapping("building")
+@RequestMapping("buildings")
 public class BuildingControllerImpl implements BuildingController {
 	
 	private BuildingService buildingService;
@@ -102,7 +102,7 @@ public class BuildingControllerImpl implements BuildingController {
 	@Override
 	@PutMapping("/{id}")
 	public Building updateBuilding(@PathVariable(name = "id")Long id, @RequestBody Building building) {
-		return buildingService.saveBuilding(building);
+		return buildingService.updateBuilding(building);
 	}
 
 	/**
