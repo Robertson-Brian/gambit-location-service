@@ -1,3 +1,5 @@
+--****************** Build all tables for database ********************
+
 CREATE TABLE locations (
   location_id SERIAL PRIMARY KEY,
   street varchar2(50) NOT NULL,
@@ -34,6 +36,9 @@ CREATE TABLE `unavailabilities` (
   FOREIGN KEY (room_id) REFERENCES rooms(room_id)
 );
 
+
+--************************* Insert test data *****************************
+
 INSERT INTO LOCATIONS (street, city, state, zip, company, active)
 VALUES ('11730 Plaza America Dr #205', 'Reston', 'Virginia', '20190', 'HQ_Revature', true);
 
@@ -45,3 +50,26 @@ VALUES('3220 Banyan Circle', null, 2)
 
 INSERT INTO buildings(street_address, building_number, location_id)
 VALUES('11730 Plaza America Dr', '205', 1)
+
+
+
+--*************** Create a user and grant all privileges ******************
+
+CREATE USER ls_user WITH PASSWORD 'location';
+
+GRANT ALL PRIVILEGES ON
+ buildings, locations, rooms, unavailabilities  
+ TO ls_admin
+ ;
+ 
+ GRANT ALL PRIVILEGES ON
+ buildings_building_id_seq
+ , locations_location_id_seq
+ , rooms_room_id_seq
+ , unavailabilities_unavailability_id_seq
+ TO ls_admin
+ ;
+
+
+
+
