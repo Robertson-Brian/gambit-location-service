@@ -18,15 +18,15 @@ import com.revature.gambit.services.RoomService;
 @CrossOrigin
 @RestController
 @RequestMapping("room")
-public class RoomControllerImpl implements RoomController{
-	
+public class RoomControllerImpl implements RoomController {
+
 	RoomService roomService;
-	
+
 	@Autowired
 	public RoomControllerImpl(RoomService roomService) {
 		this.roomService = roomService;
 	}
-	
+
 	/**
 	 * HTTP GET getAllRooms - Handles request to Location Service API to get all
 	 * rooms.
@@ -37,14 +37,14 @@ public class RoomControllerImpl implements RoomController{
 	 * @return On success a list of buildings
 	 */
 	@Override
-	@GetMapping("/room")
+	@GetMapping("/")
 	public List<Room> getAllRooms() {
 		return roomService.findAllRoom();
 	}
-	
+
 	@Override
-	@GetMapping("/building/{id}/room")
-	public List<Room> getRoomsByBuilding(@PathVariable(name="id") Long id) {
+	@GetMapping("/building/{id}")
+	public List<Room> getRoomsByBuilding(@PathVariable(name = "id") Long id) {
 		return roomService.findRoomsByBuilding(id);
 	}
 
@@ -55,12 +55,10 @@ public class RoomControllerImpl implements RoomController{
 	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @author Jake Trump | 1803-USF-MAR05
 	 * @param id
-	 * @return On success it real the queried location. On Failure it returns a
-	 *         location object with an ID of "-1" and all other fields with the
-	 *         value of "Do Not Exist"
+	 * @return On success it real the queried location. On Failure it returns a null
 	 */
 	@Override
-	@GetMapping("/room/{id}")
+	@GetMapping("/{id}")
 	public Room getRoomByID(@PathVariable(name = "id") Long id) {
 		return roomService.findRoom(id);
 	}
@@ -79,23 +77,22 @@ public class RoomControllerImpl implements RoomController{
 	 *         Exist"
 	 */
 	@Override
-	@PostMapping("/room")
+	@PostMapping("/")
 	public Room createRoom(@RequestBody Room room) {
 		return roomService.saveRoom(room);
 	}
 
 	@Override
-	@PutMapping("/room")
-	public Room updateRoom(@RequestBody Room room) {
+	@PutMapping("/{id}")
+	public Room updateRoom(@PathVariable(name = "id") Long id, @RequestBody Room room) {
 		return roomService.updateRoom(room);
 	}
 
-//	@Override
-//	@DeleteMapping("/room/{id}")
-//	public Room deleteRoomByID(Long id) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
+	// @Override
+	// @DeleteMapping("/room/{id}")
+	// public Room deleteRoomByID(Long id) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 }

@@ -7,15 +7,11 @@ package com.revature.gambit.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "Rooms")
@@ -30,12 +26,7 @@ public class Room {
 	@Column(name = "room_number")
 	private Long roomNumber;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	//@Column(name = "building_id")
-	@JoinColumn(name= "building_id")
-	@Transient
-	private Building building;
-	
+	@Column(name = "building_id")
 	private Long buildingId;
 
 	@Column(name = "capacity")
@@ -45,11 +36,10 @@ public class Room {
 	public Room() {
 	}
 
-	public Room(Long roomId, Long roomNumber, Building building, Long buildingId, Integer capacity) {
+	public Room(Long roomId, Long roomNumber, Long buildingId, Integer capacity) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
-		this.building = building;
 		this.buildingId = buildingId;
 		this.capacity = capacity;
 	}
@@ -70,14 +60,6 @@ public class Room {
 		this.roomNumber = roomNumber;
 	}
 
-	public Building getBuilding() {
-		return building;
-	}
-
-	public void setBuilding(Building building) {
-		this.building = building;
-	}
-
 	public Long getBuildingId() {
 		return buildingId;
 	}
@@ -96,15 +78,14 @@ public class Room {
 
 	@Override
 	public String toString() {
-		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", building=" + building + ", buildingId="
-				+ buildingId + ", capacity=" + capacity + "]";
+		return "Room [roomId=" + roomId + ", roomNumber=" + roomNumber + ", buildingId=" + buildingId + ", capacity="
+				+ capacity + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((building == null) ? 0 : building.hashCode());
 		result = prime * result + ((buildingId == null) ? 0 : buildingId.hashCode());
 		result = prime * result + ((capacity == null) ? 0 : capacity.hashCode());
 		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
@@ -121,11 +102,6 @@ public class Room {
 		if (getClass() != obj.getClass())
 			return false;
 		Room other = (Room) obj;
-		if (building == null) {
-			if (other.building != null)
-				return false;
-		} else if (!building.equals(other.building))
-			return false;
 		if (buildingId == null) {
 			if (other.buildingId != null)
 				return false;
@@ -148,7 +124,8 @@ public class Room {
 			return false;
 		return true;
 	}
-
+	
+	
 		
 	
 }

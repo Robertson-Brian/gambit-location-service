@@ -99,7 +99,7 @@ public class LocationControllerImpl implements LocationController {
 	 */
 	@Override
 	@PutMapping("/{id}")
-	public Location updateLocation(@PathVariable(name = "id") Long id, Location location) {
+	public Location updateLocation(@PathVariable(name = "id") Long id, @RequestBody Location location) {
 		return locationService.saveLocation(location);
 	}
 

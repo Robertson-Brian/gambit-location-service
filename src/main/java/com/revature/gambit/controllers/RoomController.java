@@ -18,7 +18,7 @@ public interface RoomController {
 
 	Room createRoom(@RequestBody Room room);
 
-	Room updateRoom(@RequestBody Room room);
+	Room updateRoom(@PathVariable(name="id")Long id, @RequestBody Room room);
 
 	//	Room deleteRoomByID(@PathVariable(name = "id") Long id);
 	//Room deleteRoomByID(@PathVariable(name = "id") Long id);

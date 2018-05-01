@@ -2,6 +2,7 @@ package com.revature.gambit.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.gambit.entities.Room;
@@ -12,6 +13,7 @@ public class RoomService {
 
 	private RoomRepo roomRepo;
 
+	@Autowired
 	public RoomService(RoomRepo roomRepo) {
 		this.roomRepo = roomRepo;
 	}

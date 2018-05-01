@@ -16,10 +16,10 @@ import com.revature.gambit.services.UnavailService;
 @CrossOrigin
 @RestController
 @RequestMapping("unavailabilities")
-public class UnavailControllerImpl implements UnavailController{
-	
+public class UnavailControllerImpl implements UnavailController {
+
 	private UnavailService unavailService;
-	
+
 	@Autowired
 	public UnavailControllerImpl(UnavailService unavailService) {
 		this.unavailService = unavailService;
@@ -48,10 +48,8 @@ public class UnavailControllerImpl implements UnavailController{
 	 * @author Jake Trump | 1803-USF-MAR05
 	 * @param location
 	 *            from the request body
-	 * @return On success the method returns the created location with a non
-	 *         negative ID field. On failure the method returns a location object
-	 *         with an ID of -1 and all other fields with the value of "Do Not
-	 *         Exist"
+	 * @return On success the method returns the created location. On failure
+	 *         returns a null.
 	 */
 	@Override
 	@PostMapping("/")
