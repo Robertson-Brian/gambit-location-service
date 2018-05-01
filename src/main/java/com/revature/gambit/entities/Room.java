@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Rooms")
+@Table(name = "rooms")
 public class Room {
 
 	@Id
@@ -24,7 +24,7 @@ public class Room {
 	private Long roomId;
 
 	@Column(name = "room_number")
-	private Long roomNumber;
+	private String roomNumber;
 
 	@Column(name = "building_id")
 	private Long buildingId;
@@ -36,7 +36,7 @@ public class Room {
 	public Room() {
 	}
 
-	public Room(Long roomId, Long roomNumber, Long buildingId, Integer capacity) {
+	public Room(Long roomId, String roomNumber, Long buildingId, Integer capacity) {
 		super();
 		this.roomId = roomId;
 		this.roomNumber = roomNumber;
@@ -52,11 +52,11 @@ public class Room {
 		this.roomId = roomId;
 	}
 
-	public Long getRoomNumber() {
+	public String getRoomNumber() {
 		return roomNumber;
 	}
 
-	public void setRoomNumber(Long roomNumber) {
+	public void setRoomNumber(String roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 

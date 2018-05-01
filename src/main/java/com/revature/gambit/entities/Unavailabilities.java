@@ -18,33 +18,34 @@ import javax.persistence.Table;
 public class Unavailabilities {
 
 	@Id
-	@Column(name = "unavailabilities_id")
-	@SequenceGenerator(name = "unavailabilities_id_seq", sequenceName = "unavailabilities_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "unavailabilities_id_seq", strategy = GenerationType.AUTO)
-	private Long unavailabilitiesId;
+	@Column(name = "unavailability_id")
+	@SequenceGenerator(name = "unavailability_id_seq", sequenceName = "unavailability_id_seq", allocationSize = 1)
+	@GeneratedValue(generator = "unavailability_id_seq", strategy = GenerationType.AUTO)
+	private Long unavailabilityId;
 
 	@Column(name = "start_date")
 	private LocalDate startDate;
 
 	@Column(name = "end_date")
 	private LocalDate endDate;
-
-	@Column(name = "batch_id")
-	private Long batchId;
-
-	@Column(name = "comments")
-	private String comments;
 	
 	@Column(name = "room_id")
 	private Long roomId;
 	
+	@Column(name = "comments")
+	private String comments;
+
+	@Column(name = "batch_id")
+	private Long batchId;
+
+	
 	//Constructors
 	public Unavailabilities( ) { }
 
-	public Unavailabilities(Long unavailabilitiesId, LocalDate startDate, LocalDate endDate, Long batchId,
+	public Unavailabilities(Long unavailabilityId, LocalDate startDate, LocalDate endDate, Long batchId,
 			String comments, Long roomId) {
 		super();
-		this.unavailabilitiesId = unavailabilitiesId;
+		this.unavailabilityId = unavailabilityId;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.batchId = batchId;
@@ -52,12 +53,12 @@ public class Unavailabilities {
 		this.roomId = roomId;
 	}
 
-	public Long getUnavailabilitiesId() {
-		return unavailabilitiesId;
+	public Long getUnavailabilityId() {
+		return unavailabilityId;
 	}
 
-	public void setUnavailabilitiesId(Long unavailabilitiesId) {
-		this.unavailabilitiesId = unavailabilitiesId;
+	public void setUnavailabilitiesId(Long unavailabilityId) {
+		this.unavailabilityId = unavailabilityId;
 	}
 
 	public LocalDate getStartDate() {
@@ -102,7 +103,7 @@ public class Unavailabilities {
 
 	@Override
 	public String toString() {
-		return "Unavailabilities [unavailabilitiesId=" + unavailabilitiesId + ", startDate=" + startDate + ", endDate="
+		return "Unavailabilities [unavailabilityId=" + unavailabilityId + ", startDate=" + startDate + ", endDate="
 				+ endDate + ", batchId=" + batchId + ", comments=" + comments + ", roomId=" + roomId + "]";
 	}
 
@@ -115,7 +116,7 @@ public class Unavailabilities {
 		result = prime * result + ((endDate == null) ? 0 : endDate.hashCode());
 		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
 		result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-		result = prime * result + ((unavailabilitiesId == null) ? 0 : unavailabilitiesId.hashCode());
+		result = prime * result + ((unavailabilityId == null) ? 0 : unavailabilityId.hashCode());
 		return result;
 	}
 
@@ -153,10 +154,10 @@ public class Unavailabilities {
 				return false;
 		} else if (!startDate.equals(other.startDate))
 			return false;
-		if (unavailabilitiesId == null) {
-			if (other.unavailabilitiesId != null)
+		if (unavailabilityId == null) {
+			if (other.unavailabilityId != null)
 				return false;
-		} else if (!unavailabilitiesId.equals(other.unavailabilitiesId))
+		} else if (!unavailabilityId.equals(other.unavailabilityId))
 			return false;
 		return true;
 	}
