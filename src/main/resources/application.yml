@@ -1,13 +1,34 @@
+server:
+  port: 3333
+ 
+#H2 Settings
 spring:
   datasource:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/~/test
-    username: sa  
+    username: sa
     password: 
   application:
     name: Location-Service
-  
-    
+
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://pgdb.crstf1wtvrcb.us-east-2.rds.amazonaws.com/GambitLocationServices
+#    username: ls_admin
+#    password: location
+#    driver-class-name: org.postgresql.Driver
+#  jpa:
+#    generate-ddl: false
+#    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        use_sql_comments: true
+#        format_sql: true
+#        temp:
+#          use_jdbc_metadata_defaults: false
+
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1
