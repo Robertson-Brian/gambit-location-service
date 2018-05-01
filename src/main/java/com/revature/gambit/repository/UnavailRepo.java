@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.revature.gambit.entities.Unavailabilities;
 
 @Repository
-public interface UnavailRepo extends JpaRepository<Unavailabilities, Long>{
+public interface UnavailRepo extends JpaRepository<Unavailabilities, Integer>{
 
 }

@@ -18,9 +18,13 @@ import javax.persistence.Table;
 public class Building {
 	
 	@Id
-	@Column(name="building_id")
-	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "building_id", columnDefinition = "SERIAL")    
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/**
+	 * For Oracle
+	 */
+//	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
+//	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
 	private Long buildingId;
 	
 	@Column(name="street_address")

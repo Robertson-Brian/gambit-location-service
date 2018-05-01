@@ -18,9 +18,13 @@ import javax.persistence.Table;
 public class Room {
 
 	@Id
-	@Column(name = "room_id")
-	@SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "room_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "room_id", columnDefinition = "SERIAL")    
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/**
+	 * For Oracle
+	 */
+//	@SequenceGenerator(name = "room_id_seq", sequenceName = "room_id_seq", allocationSize = 1)
+//	@GeneratedValue(generator = "room_id_seq", strategy = GenerationType.AUTO)
 	private Long roomId;
 
 	@Column(name = "room_number")

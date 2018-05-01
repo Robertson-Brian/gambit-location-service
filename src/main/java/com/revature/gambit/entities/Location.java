@@ -19,9 +19,13 @@ public class Location {
 	
 	//Change on Database t
 	@Id
-	@Column(name="location_id")
-	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "location_id", columnDefinition = "SERIAL")    
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/**
+	 * For Oracle
+	 */
+//	@SequenceGenerator(name = "building_id_seq", sequenceName = "building_id_seq", allocationSize = 1)
+//	@GeneratedValue(generator = "building_id_seq", strategy = GenerationType.AUTO)
 	private Long locationId;
 	
 	@Column(name="street")

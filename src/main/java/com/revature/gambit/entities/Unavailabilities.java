@@ -3,14 +3,14 @@
  */
 package com.revature.gambit.entities;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -18,16 +18,20 @@ import javax.persistence.Table;
 public class Unavailabilities {
 
 	@Id
-	@Column(name = "unavailability_id")
-	@SequenceGenerator(name = "unavailability_id_seq", sequenceName = "unavailability_id_seq", allocationSize = 1)
-	@GeneratedValue(generator = "unavailability_id_seq", strategy = GenerationType.AUTO)
+	@Column(name = "unavailability_id", columnDefinition = "SERIAL")    
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	/**
+	 * For Oracle
+	 */
+	//@SequenceGenerator(name = "unavailability_id_seq", sequenceName = "unavailability_id_seq", allocationSize = 1)
+	//@GeneratedValue(generator = "unavailability_id_seq", strategy = GenerationType.AUTO)
 	private Long unavailabilityId;
 
 	@Column(name = "start_date")
-	private LocalDate startDate;
+	private Timestamp startDate;
 
 	@Column(name = "end_date")
-	private LocalDate endDate;
+	private Timestamp endDate;
 	
 	@Column(name = "room_id")
 	private Long roomId;
@@ -42,7 +46,7 @@ public class Unavailabilities {
 	//Constructors
 	public Unavailabilities( ) { }
 
-	public Unavailabilities(Long unavailabilityId, LocalDate startDate, LocalDate endDate, Long batchId,
+	public Unavailabilities(Long unavailabilityId, Timestamp startDate, Timestamp endDate, Long batchId,
 			String comments, Long roomId) {
 		super();
 		this.unavailabilityId = unavailabilityId;
@@ -61,19 +65,19 @@ public class Unavailabilities {
 		this.unavailabilityId = unavailabilityId;
 	}
 
-	public LocalDate getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalDate startDate) {
+	public void setStartDate(Timestamp startDate) {
 		this.startDate = startDate;
 	}
 
-	public LocalDate getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
+	public void setEndDate(Timestamp endDate) {
 		this.endDate = endDate;
 	}
 
