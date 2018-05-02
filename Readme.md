@@ -15,8 +15,8 @@ Intergration with existing services Janus portal web application to increase exi
 ```
 <dependency>
 	<groupId>org.postgresql</groupId>
-    <artifactId>postgresql</artifactId>
-    <version>42.2.2</version>
+	<artifactId>postgresql</artifactId>
+	<version>42.2.2</version>
 </dependency>
 ```
 [H2 Dependency](http://h2database.com/html/main.html)
