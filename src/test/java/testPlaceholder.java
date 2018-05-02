@@ -1,17 +1,16 @@
-import static org.junit.Assert.*;
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 public class testPlaceholder {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
+	
 	@Test
-	public void test() {
-		fail("Not yet implemented"); // TODO
+	public void givenURL_Verify200_On_Success() {
+		get("http://localhost:8080/locations/").then().statusCode(200);
 	}
-
 }
