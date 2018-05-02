@@ -3,11 +3,11 @@ Microservice in the Gambit ecosystem to manange Locations, Buildings, and Rooms 
 Intergration with existing services Janus portal web application to increase existing application functionality.
 
 ## Built With
-*[Spring](https://spring.io/)
-*[Angular](https://angular.io/)
-*[Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/)
-*[Kafka](https://kafka.apache.org/)
-*[REST-Assured](http://rest-assured.io/)
+	*[Spring](https://spring.io/)
+	*[Angular](https://angular.io/)
+	*[Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/)
+	*[Kafka](https://kafka.apache.org/)
+	*[REST-Assured](http://rest-assured.io/)
 
 
 ## Helpful Dependencies
