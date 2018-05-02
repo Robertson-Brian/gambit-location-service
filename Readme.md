@@ -1,8 +1,8 @@
-#Gambit-Location-Services
+# Gambit-Location-Services
 Microservice in the Gambit ecosystem to manange Locations, Buildings, and Rooms for batch classroom assignment.
 Intergration with existing services Janus portal web application to increase existing application functionality.
 
-##Built With
+## Built With
 *[Spring](https://spring.io/)
 *[Angular](https://angular.io/)
 *[Spring Cloud Netflix](https://cloud.spring.io/spring-cloud-netflix/)
@@ -10,7 +10,7 @@ Intergration with existing services Janus portal web application to increase exi
 *[REST-Assured](http://rest-assured.io/)
 
 
-##Helpful Dependencies
+## Helpful Dependencies
 [PostgreSql Dependency](https://www.postgresql.org/)
 ```
 <dependency>
