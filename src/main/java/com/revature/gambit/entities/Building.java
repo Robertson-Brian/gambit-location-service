@@ -31,7 +31,7 @@ public class Building {
 	private String streetAddress;
 	
 	@Column(name="building_number")
-	private Long buildingNumber;
+	private String buildingNumber;
 
 	@Column(name="location_id")
 	private Long locationId;
@@ -39,7 +39,7 @@ public class Building {
 
 	public Building() { }
 
-	public Building(Long buildingId, String streetAddress, Long buildingNumber, Long locationId) {
+	public Building(Long buildingId, String streetAddress, String buildingNumber, Long locationId) {
 		super();
 		this.buildingId = buildingId;
 		this.streetAddress = streetAddress;
@@ -63,11 +63,11 @@ public class Building {
 		this.streetAddress = streetAddress;
 	}
 
-	public Long getBuildingNumber() {
+	public String getBuildingNumber() {
 		return buildingNumber;
 	}
 
-	public void setBuildingNumber(Long buildingNumber) {
+	public void setBuildingNumber(String buildingNumber) {
 		this.buildingNumber = buildingNumber;
 	}
 
@@ -127,6 +127,8 @@ public class Building {
 			return false;
 		return true;
 	}
+
+
 
 	
 		

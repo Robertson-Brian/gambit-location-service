@@ -2,6 +2,10 @@
 Microservice in the Gambit ecosystem to manange Locations, Buildings, and Rooms for batch classroom assignment.
 Intergration with existing services Janus portal web application to increase existing application functionality.
 
+### Test notes
+To run the test script run the RestAssuredLauncher and then run the tests as JUnit tests
+In order to see the automatically gerated database go to localhost:8082 and hit connect
+
 ### Built with
 * [Spring](https://spring.io/)
 * [Angular](https://angular.io/)

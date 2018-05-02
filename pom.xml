@@ -21,6 +21,16 @@
 	</properties>
 
 	<dependencies>
+	
+		<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+</dependency>
+		<dependency>
+		   <groupId>com.h2database</groupId>
+		   <artifactId>h2</artifactId>
+		   <version>1.4.193</version>
+		</dependency>
 
 		<dependency>
             <groupId>org.postgresql</groupId>
@@ -144,6 +154,22 @@
 		<!-- https://mvnrepository.com/artifact/com.netflix.eureka/eureka-client -->
 		<!-- <dependency> <groupId>com.netflix.eureka</groupId> <artifactId>eureka-client</artifactId> 
 			<version>1.8.7</version> <scope>runtime</scope> </dependency> -->
+	<!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>rest-assured</artifactId>
+		    <version>3.0.0</version>
+		    <scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.rest-assured/json-path -->
+		<dependency>
+		    <groupId>io.rest-assured</groupId>
+		    <artifactId>json-path</artifactId>
+		    <version>3.0.0</version>
+		</dependency>
+				
+	
+	
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

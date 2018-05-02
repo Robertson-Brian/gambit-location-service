@@ -7,7 +7,7 @@ CREATE TABLE locations (
  state varchar(20) NOT NULL,
  zip varchar(10) NOT NULL,
  company varchar(25) NOT NULL,
- active boolean NOT NULL,
+ active boolean NOT NULL
 );
 
 CREATE TABLE buildings (
@@ -47,10 +47,10 @@ VALUES ('3220 Banyan Circle', 'Tampa', 'Florida', '33613', 'USF_Revature', true)
 
 
 INSERT INTO buildings(street_address, building_number, location_id)
-VALUES('3220 Banyan Circle', null, 2)
+VALUES('3220 Banyan Circle', null, 2);
 
 INSERT INTO buildings(street_address, building_number, location_id)
-VALUES('11730 Plaza America Dr', '205', 1)
+VALUES('11730 Plaza America Dr', '205', 1);
 
 
 INSERT INTO rooms(room_number, building_id, capacity)
@@ -68,16 +68,14 @@ VALUES('200A', 2, 30);
 INSERT INTO rooms(room_number, building_id, capacity)
 VALUES('200B', 2, 30);
 
+INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
+VALUES(CURRENT_DATE  ,(CURRENT_DATE + 15), 1, 'Painting and Maintanence', null);
 
 INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
-VALUES((now())  ,(now() - interval '15 days'), 1, 'Painting and Maintanence', null);
+VALUES((CURRENT_DATE + 30) ,(CURRENT_DATE + 90), 5, 'Class in session', null);
 
 INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
-VALUES((now() - interval '1 month')  , (now() + interval '2 months'), 5, 'Class in session', null);
-
-INSERT INTO unavailabilities(start_date, end_date, room_id, comments, batch_id)
-VALUES((now() + interval '3 months')  , (now() + interval '6 months') , 4, 'Class in session', null);
-
+VALUES((CURRENT_DATE - 30) ,(CURRENT_DATE + 60) , 4, 'Class in session', null);
 
 
 --*************** Create a user and grant all privileges ******************
