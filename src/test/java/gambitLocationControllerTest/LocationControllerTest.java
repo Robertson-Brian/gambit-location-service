@@ -25,14 +25,14 @@ import io.restassured.specification.RequestSpecification;
 public class LocationControllerTest {
 
 	private Location testLocation;
-	private Map<String,String> headers;
+	private Map<String,String> header;
 
 	@Before
 	public void setUp() throws Exception {
 		RestAssured.baseURI = "http://localhost:8090/locations";
 		this.testLocation = new Location(null, "8080 Apache Drive", "Seattle", "Washington", "78855", "South", true);
-		this.headers = new HashMap<String,String>();
-		this.headers.put("application", "application/json");
+		this.header = new HashMap<String,String>();
+		this.header.put("Content-type", "application/json");
 
 	}
 
@@ -67,9 +67,9 @@ public class LocationControllerTest {
 	@Test
 	public void updateLocationTest() {
 		testLocation.setLocationId(1L);
-		testLocation.setCompany("testing");
+		testLocation.setCompany("Testing");
 		Location responseLocation = given()
-				.header("Content-type", "application/json")
+				.headers(this.header)
 				.body(testLocation)
 				.put("/"+testLocation.getLocationId().toString())
 				.andReturn().as(Location.class);
@@ -78,9 +78,9 @@ public class LocationControllerTest {
 	
 	@Test
 	public void deleteLocationTest() {
-		List<Location> counter = Arrays.asList(given().headers(headers).get("/").andReturn().as(Location[].class));
+		List<Location> counter = Arrays.asList(given().headers(this.header).get("/").andReturn().as(Location[].class));
 		Integer removeItem = counter.size();
-		given().headers(headers).delete("/"+removeItem.toString()).then().assertThat().body("active", new ResponseAwareMatcher<Response>() {
+		given().headers(this.header).delete("/"+removeItem.toString()).then().assertThat().body("active", new ResponseAwareMatcher<Response>() {
 			public Matcher<Boolean> matcher(Response response) {return equalTo(Boolean.FALSE);}
 		});
 	}

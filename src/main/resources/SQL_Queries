@@ -80,18 +80,18 @@ VALUES((CURRENT_DATE - 30) ,(CURRENT_DATE + 60) , 4, 'Class in session', null);
 
 --*************** Create a user and grant all privileges ******************
 
-CREATE USER ls_user WITH PASSWORD 'location';
+--CREATE USER ls_user WITH PASSWORD 'location';
 
-GRANT ALL PRIVILEGES ON
-buildings, locations, rooms, unavailabilities  
-TO ls_admin
-;
+--GRANT ALL PRIVILEGES ON
+--buildings, locations, rooms, unavailabilities  
+--TO ls_admin
+--;
 
-GRANT ALL PRIVILEGES ON
-buildings_building_id_seq
-, locations_location_id_seq
-, rooms_room_id_seq
-, unavailabilities_unavailability_id_seq
-TO ls_admin
-;
+--GRANT ALL PRIVILEGES ON
+--buildings_building_id_seq
+--, locations_location_id_seq
+--, rooms_room_id_seq
+--, unavailabilities_unavailability_id_seq
+--TO ls_admin
+--;
 

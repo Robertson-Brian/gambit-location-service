@@ -16,18 +16,19 @@ import com.revature.gambit.entities.Building;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class BuildingControllerTest {
 	
 	private Building testBuilding;
-	private Map<String,String> headers;
+	private Map<String,String> header;
 
 	@Before
 	public void setUp() throws Exception {
 		RestAssured.baseURI = "http://localhost:8090/buildings/";
 		testBuilding = new Building(null, "98 Cherry Coke Lane", "98", 1L);
-		this.headers = new HashMap<String,String>();
-		this.headers.put("application", "application/json");
+		this.header = new HashMap<String,String>();
+		this.header.put("Content-type", "application/json");
 	}
 
 	@Test
@@ -48,23 +49,24 @@ public class BuildingControllerTest {
 	public void getBuildingThatDoesNotExist() {
 		Integer id = 0;
 		int test = given().get(id.toString()).andReturn().asString().length();
-		assertNotEquals(test, 0);
+		Assert.assertEquals(0, test);
 	}
 
 	@Test
 	public void createBuildingTest() {
-		Response response = given().headers(headers).body(testBuilding).post().andReturn();
-		long id = response.getBody().as(Building.class).getBuildingId();
-		Assert.assertNotEquals(null, id);
+		RequestSpecification httpRequest = RestAssured.given();
+		httpRequest.headers(this.header);
+		httpRequest.body(testBuilding);
+		Response response = httpRequest.post();
+		Assert.assertEquals(200, response.statusCode());
 	}
 	
 	@Test
 	public void updateBuildingTest() {
 		testBuilding.setBuildingId(1L);
 		testBuilding.setStreetAddress("Testing");
-		System.out.println("TEST TEST TEST TEST TEST TEST TEST TEST TEST ");
 		Building responseBuilding = given()
-				.headers(headers)
+				.headers(this.header)
 				.body(testBuilding)
 				.put(testBuilding.getBuildingId().toString())
 				.andReturn()

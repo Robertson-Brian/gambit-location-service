@@ -21,15 +21,15 @@ import io.restassured.specification.RequestSpecification;
 public class RoomControllerTest {
 	
 	private Room testRoom;
-	private Map<String,String> headers;
+	private Map<String,String> header;
 
 	@Before
 	public void setUp() throws Exception{
 		RestAssured.baseURI = "http://localhost:8090";
 		RestAssured.basePath = "/rooms";
 		this.testRoom = new Room(null,"111",1L,25);
-		this.headers = new HashMap<String,String>();
-		this.headers.put("application", "application/json");
+		this.header = new HashMap<String,String>();
+		this.header.put("Content-type", "application/json");
 
 	}
 
@@ -55,7 +55,7 @@ public class RoomControllerTest {
 	@Test
 	public void createRoomTest() throws JSONException {
 		RequestSpecification httpRequest = RestAssured.given();
-		httpRequest.header("Content-type", "application/json");
+		httpRequest.headers(this.header);
 		httpRequest.body(testRoom);
 		Response response = httpRequest.post("/");
 		Assert.assertEquals(200, response.statusCode());
@@ -66,7 +66,7 @@ public class RoomControllerTest {
 		testRoom.setRoomId(1L);
 		testRoom.setRoomNumber("testing");
 		Room responseRoom = given()
-				.header("Content-type", "application/json")
+				.headers(this.header)
 				.body(testRoom)
 				.put("/"+testRoom.getRoomId().toString())
 				.andReturn().as(Room.class);

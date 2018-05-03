@@ -27,10 +27,10 @@ public class Unavailabilities {
 	//@GeneratedValue(generator = "unavailability_id_seq", strategy = GenerationType.AUTO)
 	private Long unavailabilityId;
 
-	@Column(name = "start_date")
+	@Column(name = "start_date", columnDefinition = "DATE")
 	private Timestamp startDate;
 
-	@Column(name = "end_date")
+	@Column(name = "end_date", columnDefinition = "DATE")
 	private Timestamp endDate;
 	
 	@Column(name = "room_id")
