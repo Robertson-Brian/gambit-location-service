@@ -18,6 +18,7 @@ server:
 #        temp:
 #          use_jdbc_metadata_defaults: false
 
+#Comment out below for to erase h2
 spring:  
   datasource:
     driver-class-name: org.h2.Driver
