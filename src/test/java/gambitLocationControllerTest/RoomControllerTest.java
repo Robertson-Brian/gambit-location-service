@@ -12,7 +12,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.revature.gambit.entities.Location;
 import com.revature.gambit.entities.Room;
 
 import io.restassured.RestAssured;

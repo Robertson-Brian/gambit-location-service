@@ -4,7 +4,6 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertNotEquals;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 

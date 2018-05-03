@@ -3,7 +3,7 @@ server:
 
 #spring:
 #  datasource:
-#    url: jdbc:postgresql://pgdb.crstf1wtvrcb.us-east-2.rds.amazonaws.com/GambitLocationServices
+#    url: [Postgres Database]
 #    username: ls_admin
 #    password: location
 #    driver-class-name: org.postgresql.Driver

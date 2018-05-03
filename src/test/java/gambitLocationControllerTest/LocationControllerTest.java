@@ -81,6 +81,7 @@ public class LocationControllerTest {
 		List<Location> counter = Arrays.asList(given().headers(this.header).get("/").andReturn().as(Location[].class));
 		Integer removeItem = counter.size();
 		given().headers(this.header).delete("/"+removeItem.toString()).then().assertThat().body("active", new ResponseAwareMatcher<Response>() {
+			@Override
 			public Matcher<Boolean> matcher(Response response) {return equalTo(Boolean.FALSE);}
 		});
 	}
