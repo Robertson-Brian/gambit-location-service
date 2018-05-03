@@ -72,9 +72,7 @@ public class RoomControllerImpl implements RoomController {
 	 * @param location
 	 *            from the request body
 	 * @return On success the method returns the created location with a non
-	 *         negative ID field. On failure the method returns a location object
-	 *         with an ID of -1 and all other fields with the value of "Do Not
-	 *         Exist"
+	 *         negative ID field. On failure the method returns a an empty object
 	 */
 	@Override
 	@PostMapping("/")
@@ -82,6 +80,17 @@ public class RoomControllerImpl implements RoomController {
 		return roomService.saveRoom(room);
 	}
 
+	/**
+	 * HTTP PUT updateRoom - Handles request to Location Service API to update
+	 * an existing location.
+	 * 
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @author Jake Trump | 1803-USF-MAR05
+	 * 
+	 * @param id
+	 *            - from the URL address
+	 * @return an empty room object.
+	 */
 	@Override
 	@PutMapping("/{id}")
 	public Room updateRoom(@PathVariable(name = "id") Long id, @RequestBody Room room) {
