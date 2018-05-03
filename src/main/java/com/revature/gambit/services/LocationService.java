@@ -1,4 +1,4 @@
-	package com.revature.gambit.services;
+package com.revature.gambit.services;
 
 import java.util.List;
 
@@ -23,54 +23,81 @@ public class LocationService {
 	}
 
 	/**
-	 * Returns all Locations in the database.
+	 * This method utilizes Spring's JPA repository interface to query the database
+	 * for all known locations. NOTE: This returns all buildings even deactivated
+	 * locations.
 	 * 
-	 * @author Stephen Lovick | 1803-MAR05-USF
-	 * @return List of Locations
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @return Returns a list of ALL rooms in the Database
 	 */
 	public List<Location> findAllLocation() {
 		return locationRepo.findAll();
 	}
 
 	/**
-	 * Finds the location by the Id number;
+	 * This method utilizes Spring's JPA repository interface, to locate a location
+	 * by it locationId
 	 * 
-	 * @author Stephen Lovick | 1803-MAR05-USF
+	 * @author Stephen Lovick | 1803-USF-MAR05
 	 * @param id
-	 * @return On Success it returns the queried location. On failure it returns
-	 *         null.
+	 *            - Long: locationId
+	 * @return
 	 */
 	public Location findLocationByID(Long id) {
 		return locationRepo.findLocationByLocationId(id);
 	}
 
 	/**
-	 * Saves the location and returns it after being written to the database.
+	 * This method utilizes Spring's JPA repository to persist the building to the
+	 * database.
 	 * 
-	 * @author Stephen Lovick | 1803-MAR05-USF
-	 * @param location
-	 * @return
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @param building
+	 *            - location object to be added to the database with a locationId of
+	 *            null.
+	 * @return On success the location that was passed with a locationId of null
+	 *         will be returned with a non null value. On failure the room will be
+	 *         returned with a null value for buildingId.
 	 */
 	public Location saveLocation(Location location) {
-		return locationRepo.saveAndFlush(location);
+		if (location.getLocationId() == null) {
+			location.setActive(true);
+			return locationRepo.saveAndFlush(location);
+		} else {
+			location.setLocationId(null);
+			return location;
+		}
 	}
 
 	/**
-	 * Deactivates the location with the specified LocationID
+	 * This method utilizes Spring's JPA repository to locate a building by location
+	 * change the location object's field of active to false, then saves and returns
+	 * the entity's changes
 	 * 
-	 * @param id
-	 * @return
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @param id 
+	 * @return On success it will return the Location with the field active set to
+	 *         false.
 	 */
-	public Location deactivateLocation(Long locationId) {
-		Location deactivating = locationRepo.findLocationByLocationId(locationId.longValue());
+	public Location deactivateLocation(Long id) {
+		Location deactivating = locationRepo.findLocationByLocationId(id);
 		deactivating.setActive(false);
 		return locationRepo.saveAndFlush(deactivating);
 
 	}
 
+	/**
+	 * This method utilizes Spring's JPA repository to update an existing room
+	 * record in the database.
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @param location
+	 * @return On success the location will be returned with the changes
+	 *         made to the object. On failure a null location object will be
+	 *         returned.
+	 */
 	public Location updateLocation(Location location) {
 		Location check = findLocationByID(location.getLocationId());
-		if(check != null) {
+		if (check != null) {
 			return locationRepo.saveAndFlush(location);
 		}
 		return check;

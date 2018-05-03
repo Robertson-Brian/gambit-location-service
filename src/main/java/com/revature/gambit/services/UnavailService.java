@@ -19,6 +19,13 @@ public class UnavailService {
 	}
 	public UnavailService() { }
 
+	/**
+	 * This method utilizes Spring's JPA repository interface to query the database
+	 * for all known Unavailabilities.
+	 * 
+	 * @author Stephen Lovick | 1803-USF-MAR05
+	 * @return Returns a list of ALL rooms in the Database
+	 */
 	public List<Unavailabilities> findAllUnavailabilities() {
 		return unavailRepo.findAll();
 	}
