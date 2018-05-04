@@ -9,13 +9,16 @@ spring:
     username: sa
     password:
     initialize: true
+    continue-on-error: true
     platform: h2
+    
   h2:
-    console:
+     console:
       enabled: true
   jpa: 
     hibernate:
-      ddl-auto: true
+      ddl-auto: create-drop
+      
 
     
   

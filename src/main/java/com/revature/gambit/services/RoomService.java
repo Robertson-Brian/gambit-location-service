@@ -74,8 +74,8 @@ public class RoomService {
 	 *         with a null value for roomId
 	 */
 	public Room saveRoom(Room room) {
-		if (room.getBuildingId() != null) {
-			room.setBuildingId(null);
+		if (room.getRoomId() != null) {
+			room.setRoomId(null);
 			return room;
 		} else {
 			return roomRepo.saveAndFlush(room);
