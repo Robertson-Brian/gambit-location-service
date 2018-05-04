@@ -1,0 +1,580 @@
+---
+swagger: "2.0"
+info:
+  description: This is the OpenAPI documentation for the Location service in the Janus webapp.
+  version: "1.0"
+  title: Janus Location Service
+host: ec2-35-182-210-106.ca-central-1.compute.amazonaws.com:10000
+tags:
+- name: locations
+  description: Endpoints for Locations in Location Service
+- name: buildings
+  description: Endpoints for Buildings in Location Service
+- name: rooms
+  description: Endpoints for Rooms in Location Service
+- name: unavailabilities
+  description: Endpoints for Unavailabilities in Location Service
+paths:
+  /locations/:
+    get:
+      tags:
+      - locations
+      summary: Retrieve all Revature Locations
+      parameters: []
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Location'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    post:
+      tags:
+      - locations
+      summary: Create a new Revature Location
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/PostLocation'
+        x-examples:
+          application/json: |-
+            {
+                "street": "11730 Plaza America Dr #205",
+                "city": "New Reston",
+                "state": "Virginia",
+                "zip": "20191",
+                "company": "HQ2_Revature",
+                "active": true
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Location'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /locations/{locationId}:
+    get:
+      tags:
+      - locations
+      summary: Retrieve a Revature Location by Id
+      parameters:
+      - name: locationId
+        in: path
+        description: Id of location to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Location'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    put:
+      tags:
+      - locations
+      summary: Update an existing Revature Location
+      consumes:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: Id of location to update
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/Location'
+        x-examples:
+          application/json: |-
+            {
+              "locationId": 3,
+              "street": "11730 Plaza America Dr #205",
+              "city": "Reston",
+              "state": "Virginia",
+              "zip": "20191",
+              "company": "HQ1_Revature",
+              "active": true
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Location'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    delete:
+      tags:
+      - locations
+      summary: Deactivate an existing Revature Location
+      consumes:
+      - application/json
+      parameters:
+      - name: locationId
+        in: path
+        description: Id of location to delete
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/Location'
+        x-examples:
+          application/json: |-
+            {
+                "locationId": 4,
+                "street": "11730 Plaza America Dr #205",
+                "city": "Reston",
+                "state": "Virginia",
+                "zip": "20191",
+                "company": "HQ1_Revature",
+                "active": true
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Location'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /buildings/:
+    get:
+      tags:
+      - buildings
+      summary: Retrieve all Revature Buildings
+      parameters: []
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Building'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    post:
+      tags:
+      - buildings
+      summary: Create a new Revature Building
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/PostBuilding'
+        x-examples:
+          application/json: |-
+            {
+                "streetAddress": "123 Fake St",
+                "buildingNumber": "14",
+                "locationId": 1
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Building'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /buildings/{buildingId}:
+    get:
+      tags:
+      - buildings
+      summary: Retrieve a Revature Building by Id
+      parameters:
+      - name: buildingId
+        in: path
+        description: Id of building to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Building'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    put:
+      tags:
+      - buildings
+      summary: Update an existing Revature Building
+      consumes:
+      - application/json
+      parameters:
+      - name: buildingId
+        in: path
+        description: Id of building to return
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/Building'
+        x-examples:
+          application/json: |-
+            {
+                "buildingId": 4,
+                "streetAddress": "1234 Fake Blvd",
+                "buildingNumber": "14",
+                "locationId": 1
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Building'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /buildings/location/{locationId}:
+    get:
+      tags:
+      - buildings
+      summary: Retrive all Buildings in a Revature Location
+      parameters:
+      - name: locationId
+        in: path
+        description: Id of Buildings' location
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Building'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /rooms/:
+    get:
+      tags:
+      - rooms
+      summary: Retrieve all Revature Rooms
+      parameters: []
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    post:
+      tags:
+      - rooms
+      summary: Create a new Revature Room
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/PostRoom'
+        x-examples:
+          application/json: |-
+            {
+                    "roomNumber": "808",
+                    "buildingId": 1,
+                    "capacity": 25
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /rooms/{roomId}:
+    get:
+      tags:
+      - rooms
+      summary: Retrieve a Revature Room by Id
+      parameters:
+      - name: roomId
+        in: path
+        description: Id of Room's location
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    put:
+      tags:
+      - rooms
+      summary: Update an existing Revature Room
+      consumes:
+      - application/json
+      parameters:
+      - name: roomId
+        in: path
+        description: Id of Room's location
+        required: true
+        type: integer
+        format: int64
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/Room'
+        x-examples:
+          application/json: |-
+            {
+                "roomId": 7,
+                "roomNumber": "808",
+                "buildingId": 1,
+                "capacity": 50
+            }
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /rooms/building/{buildingId}:
+    get:
+      tags:
+      - rooms
+      summary: Retrieve all Rooms in a Revature Building
+      parameters:
+      - name: buildingId
+        in: path
+        description: Id of Rooms' Building
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/Room'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+  /unavailabilities/:
+    get:
+      tags:
+      - unavailabilities
+      summary: Retrieve all Revature Unavailabilities
+      parameters: []
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/PostUnavailability'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+    post:
+      tags:
+      - unavailabilities
+      summary: Create a new Revature Unavailability
+      consumes:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: false
+        schema:
+          $ref: '#/definitions/PostUnavailability'
+        x-examples:
+          application/json: "{\n  \"startDate\": 1525320000000,\n  \"endDate\": 1526616000000,\n\
+            \  \"roomId\": 1,\n  \"comments\": \"Swagger Maintenance\",\n  \"batchId\"\
+            : null\n}  "
+      responses:
+        200:
+          description: successful operation, unsuccessful operations will return null
+          schema:
+            $ref: '#/definitions/PostUnavailability'
+        400:
+          description: bad request
+          schema:
+            $ref: '#/definitions/BadRequest'
+definitions:
+  PostLocation:
+    properties:
+      street:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      company:
+        type: string
+      active:
+        type: boolean
+    example:
+      zip: zip
+      city: city
+      street: street
+      active: true
+      company: company
+      state: state
+  Location:
+    properties:
+      locationId:
+        type: integer
+        format: int32
+      street:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      company:
+        type: string
+      active:
+        type: boolean
+    example:
+      zip: zip
+      city: city
+      locationId: 0
+      street: street
+      active: true
+      company: company
+      state: state
+  PostBuilding:
+    properties:
+      streetAddress:
+        type: string
+      buildingNumber:
+        type: string
+      locationId:
+        type: integer
+        format: int32
+    example:
+      streetAddress: streetAddress
+      locationId: 0
+      buildingNumber: buildingNumber
+  Building:
+    properties:
+      buildingId:
+        type: integer
+        format: int32
+      streetAddress:
+        type: string
+      buildingNumber:
+        type: string
+      locationId:
+        type: integer
+        format: int32
+    example:
+      streetAddress: streetAddress
+      locationId: 6
+      buildingNumber: buildingNumber
+      buildingId: 0
+  PostRoom:
+    properties:
+      roomNumber:
+        type: string
+      buildingId:
+        type: integer
+        format: int32
+      capacity:
+        type: integer
+        format: int32
+    example:
+      roomNumber: roomNumber
+      buildingId: 0
+      capacity: 6
+  Room:
+    properties:
+      roomId:
+        type: integer
+        format: int32
+      roomNumber:
+        type: string
+      buildingId:
+        type: integer
+        format: int32
+      capacity:
+        type: integer
+        format: int32
+    example:
+      roomNumber: roomNumber
+      roomId: 0
+      buildingId: 6
+      capacity: 1
+  PostUnavailability:
+    properties:
+      unavailabilityId:
+        type: integer
+        format: int32
+      startDate:
+        type: string
+        format: LocalDate
+      endDate:
+        type: string
+        format: LocalDate
+    example:
+      endDate: endDate
+      unavailabilityId: 0
+      startDate: startDate
+  BadRequest:
+    properties:
+      timestamp:
+        type: string
+        format: Timestamp
+      status:
+        type: integer
+        format: int32
+      error:
+        type: string
+      exception:
+        type: string
+      message:
+        type: string
+      path:
+        type: string
