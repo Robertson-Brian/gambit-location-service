@@ -47,7 +47,7 @@ public class BuildingService {
 	 * @return
 	 */
 	public List<Building> findBuildingByLocationId(Long id) {
-		return buildingRepo.findByLocationId(id.longValue());
+		return buildingRepo.findByLocationId(id);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class BuildingService {
 	 * @return
 	 */
 	public Building findBuildingByBuildingID(Long id) {
-		return buildingRepo.findByBuildingId(id.longValue());
+		return buildingRepo.findByBuildingId(id);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class BuildingService {
 		if (check != null) {
 			return buildingRepo.saveAndFlush(building);
 		} else {
-			return check;
+			return null;
 		}
 	}
 

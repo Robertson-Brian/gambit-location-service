@@ -57,7 +57,7 @@ public class LocationService {
 	 *            null.
 	 * @return On success the location that was passed with a locationId of null
 	 *         will be returned with a non null value. On failure the room will be
-	 *         returned with a null value for buildingId.
+	 *         returned with a null value for buildingId and active.
 	 */
 	public Location saveLocation(Location location) {
 		if (location.getLocationId() == null) {
@@ -65,6 +65,7 @@ public class LocationService {
 			return locationRepo.saveAndFlush(location);
 		} else {
 			location.setLocationId(null);
+			location.setActive(null);
 			return location;
 		}
 	}
